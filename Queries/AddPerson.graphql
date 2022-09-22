@@ -1,0 +1,27 @@
+﻿mutation AddPerson(
+  $address1: String,
+  $address2: String,
+  $beginDate: String,
+  $email: String,
+  $externalUniqueId: String,
+  $first: String!,
+  $last: String!,
+  $phone: String,
+  $positionId: ID!,
+  $username: String!
+) {
+  addPerson(
+    address1: $address1,
+    address2: $address2,
+    beginDate: $beginDate,
+    email: $email,
+    externalUniqueId: $externalUniqueId,
+    first: $first,
+    last: $last,
+    phone: $phone,
+    positionId: $positionId,
+    username: $username
+  ) {
+    personId
+  }
+}

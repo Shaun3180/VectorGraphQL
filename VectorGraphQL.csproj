@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <GraphQL Remove="GetPeople.graphql" />
+    <GraphQL Remove="Queries\AddPerson.graphql" />
+    <GraphQL Remove="Queries\AddPosition.graphql" />
+    <GraphQL Remove="Queries\DeactivatePerson.graphql" />
+    <GraphQL Remove="Queries\GetCourses.graphql" />
+    <GraphQL Remove="Queries\GetFirst100ActivePeopleAndProgress.graphql" />
+    <GraphQL Remove="Queries\GetPersonById.graphql" />
+    <GraphQL Remove="Queries\GetPositions.graphql" />
+    <GraphQL Remove="Queries\UpdatePerson.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="GetPeople.graphql" />
+    <None Remove="Queries\AddPosition.graphql" />
+    <None Remove="Queries\DeactivatePerson.graphql" />
+    <None Remove="Queries\GetCourses.graphql" />
+    <None Remove="Queries\GetFirst100ActivePeopleAndProgress.graphql" />
+    <None Remove="Queries\GetFirst100People.graphql" />
+    <None Remove="Queries\GetPersonById.graphql" />
+    <None Remove="Queries\GetPositions.graphql" />
+    <None Remove="Queries\UpdatePerson.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Queries\DeactivatePerson.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\AddPosition.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\GetFirst100ActivePeopleAndProgress.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\UpdatePerson.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\GetPersonById.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\GetCourses.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\GetPositions.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\AddPerson.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.13.2" />
+    <PackageReference Include="StrawberryShake.Transport.Http" Version="12.13.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FoundryClasses">
+      <HintPath>..\FoundryClasses\EverFiClasses\bin\Debug\FoundryClasses.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,5 @@
+﻿mutation AddPosition($name:String!, $code:String, $parentId:ID){
+  addPosition(name:$name, code: $code, parentId: $parentId) {
+    positionId
+  }
+}

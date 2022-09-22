@@ -1,0 +1,7 @@
+﻿mutation DeactivatePerson($personId:ID!) {
+  Person(personId: $personId) {
+    deactivate {
+      personId
+    }
+  }
+}

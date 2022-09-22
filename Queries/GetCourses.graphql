@@ -1,0 +1,6 @@
+﻿query GetCourseById($courseInfoId: ID!) {
+  CourseInfo(courseInfoId: $courseInfoId) {
+    courseInfoId
+    title
+  }
+}

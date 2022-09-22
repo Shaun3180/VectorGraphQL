@@ -1,0 +1,12 @@
+﻿query GetFirst100People {
+  People(first: 100) {
+    nodes {
+      first
+      last
+      personId
+      username
+      externalUniqueId
+      email
+    }
+  }
+}

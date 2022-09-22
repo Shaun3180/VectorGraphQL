@@ -1,0 +1,17 @@
+﻿query GetAllPositions
+   { Positions
+    { nodes
+      { positionId 
+        name 
+        code 
+      }
+      pageInfo {
+           count
+           totalCount
+           startCursor
+           endCursor
+           hasNextPage
+           hasPreviousPage
+       }
+    }
+}

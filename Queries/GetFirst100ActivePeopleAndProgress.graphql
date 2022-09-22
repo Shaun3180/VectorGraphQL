@@ -1,0 +1,39 @@
+﻿query GetFirst100ActivePeopleAndProgress
+{ People (first: 100 active: true )
+    { nodes
+       { first 
+         last
+         personId
+         username
+         externalUniqueId
+         progress {
+            courseInfo { 
+               title 
+               courseInfoId }
+            completed
+            completeTime
+            progressId
+            maxQuizScore}
+            jobs {
+            jobId
+            beginDate
+            endDate
+            title
+            location {
+                name
+               } 
+            position {
+                name
+               }
+            } 
+       } 
+       pageinfo {
+           count
+           totalCount
+           startCursor
+           endCursor
+           hasNextPage
+           hasPreviousPage
+       }
+    }
+}

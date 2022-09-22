@@ -1,0 +1,13 @@
+﻿query GetPersonById($id: ID!) {
+  Person(personId: $id) {
+    address1
+    address2
+    email
+    externalUniqueId
+    first
+    last
+    phone
+    personId
+    username
+  }
+}
