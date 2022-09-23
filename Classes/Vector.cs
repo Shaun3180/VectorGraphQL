@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using StrawberryShake;
+using VectorClasses;
 using VectorGraphQL;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -80,19 +81,33 @@ internal class Vector
         return result.Data.Person;
     }
 
-    public async Task<IAddPerson_AddPerson> AddPerson(Person person)
+    public async Task<IGetPersonAndProgressByCSUID_People_Nodes> GetUserByUniqueId(string csuId)
     {
-        IOperationResult<IAddPersonResult> result;
+        IOperationResult<IGetPersonAndProgressByCSUIDResult> result = await _client.GetPersonAndProgressByCSUID.ExecuteAsync(csuId);
+        result.EnsureNoErrors();
 
-        result = await _client.AddPerson.ExecuteAsync(person.Address1,
-            person.Address2,
-            person.BeginDate,
+        return result.Data.People.Nodes[0];
+        //return result.Data.People;
+    }
+
+    //public async Task<IGetPersonAndProgressByUserName_People_Nodes> GetUserByUserName(string csuId)
+    //{
+    //    IOperationResult<IGetPersonAndProgressByUserNameResult> result = await _client.GetPersonAndProgressByUserName.ExecuteAsync(csuId);
+    //    result.EnsureNoErrors();
+
+    //    return result.Data.People.Nodes[0];
+    //}
+
+    public async Task<IAddPersonBasic_AddPerson> AddPerson(VectorStudent person)
+    {
+        IOperationResult<IAddPersonBasicResult> result;
+
+        result = await _client.AddPersonBasic.ExecuteAsync(
             person.Email,
-            person.ExternalUniqueId,
+            person.CsuId,
             person.FirstName,
             person.LastName,
-            person.Phone,
-            person.UserName
+            person.EName
             );      
 
         result.EnsureNoErrors();
@@ -100,37 +115,33 @@ internal class Vector
         return result.Data.AddPerson;
     }
 
-    public async Task<IAddPersonWithPosition_AddPerson> AddPersonWithPosition(Person person)
+    //public async Task<IAddPersonWithPosition_AddPerson> AddPersonWithPosition(VectorStudent person)
+    //{
+    //    IOperationResult<IAddPersonWithPositionResult> result;
+
+    //        result = await _client.AddPersonWithPosition.ExecuteAsync(
+    //        person.Email,
+    //        person.ExternalUniqueId,
+    //        person.FirstName,
+    //        person.LastName,
+    //        person.Phone,
+    //        person.PositionId.ToString().ToUpper(),
+    //        person.UserName
+    //        );
+
+    //    result.EnsureNoErrors();
+
+    //    return result.Data.AddPerson;
+    //}
+
+    public async Task<IUpdatePerson_Person> UpdateUser(VectorStudent person)
     {
-        IOperationResult<IAddPersonWithPositionResult> result;
-
-            result = await _client.AddPersonWithPosition.ExecuteAsync(person.Address1,
-            person.Address2,
-            person.BeginDate,
-            person.Email,
-            person.ExternalUniqueId,
-            person.FirstName,
-            person.LastName,
-            person.Phone,
-            person.PositionId.ToString().ToUpper(),
-            person.UserName
-            );
-
-        result.EnsureNoErrors();
-
-        return result.Data.AddPerson;
-    }
-
-    public async Task<IUpdatePerson_Person> UpdateUser(Person person)
-    {
-        IOperationResult<IUpdatePersonResult> result = await _client.UpdatePerson.ExecuteAsync(person.Address1,
-            person.Address2,
+        IOperationResult<IUpdatePersonResult> result = await _client.UpdatePerson.ExecuteAsync(
             person.Email,
             person.FirstName,
             person.LastName,
-            person.PersonId.ToString().ToUpper(),
-            person.Phone,
-            person.UserName);
+            person.VectorId.ToString().ToUpper(),
+            person.EName);
         result.EnsureNoErrors();
 
         return result.Data.Person;
@@ -148,7 +159,9 @@ internal class Vector
     {
         IOperationResult<IAddJobResult> result = await _client.AddJob.ExecuteAsync(personId.ToString().ToUpper(), 
             locationId.ToString().ToUpper(),
-            positionId.ToString().ToUpper()
+            positionId.ToString().ToUpper(),
+            DateTime.Now,
+            DateTime.Now.AddMonths(3)
             );
         result.EnsureNoErrors();
 
@@ -192,36 +205,6 @@ internal class Vector
     }
 
     #endregion
-}
-
-public class Person
-{
-    public Person()
-    {
-    }
-    public Person(IGetPersonById_Person person)
-    {
-        this.Address1 = person.Address1;
-        this.Address2 = person.Address2;
-        this.Email = person.Email;
-        this.ExternalUniqueId = person.ExternalUniqueId;
-        this.FirstName = person.First;
-        this.LastName = person.Last;
-        this.PersonId = new Guid(person.PersonId);
-        this.Phone = person.Phone;
-        this.UserName = person.Username;
-    }
-    public string Address1 { get; set; }
-    public string Address2 { get; set; }
-    public string BeginDate { get; set; }
-    public string Email { get; set; }
-    public string ExternalUniqueId { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public Guid PersonId { get; set; }
-    public string Phone { get; set; }
-    public Guid PositionId { get; set; }
-    public string UserName { get; set; }
 }
 
 internal class Token

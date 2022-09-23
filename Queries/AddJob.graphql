@@ -1,6 +1,6 @@
-﻿mutation AddJob($personId:ID!, $locationId:ID!, $positionId:ID!) {
+﻿mutation AddJob($personId:ID!, $locationId:ID!, $positionId:ID!, $beginDate:Date, $endDate:Date) {
   Person(personId: $personId) {
-    addJob(locationId:$locationId, positionId:$positionId) {
+    addJob(locationId:$locationId, positionId:$positionId, beginDate:$beginDate, endDate:$endDate) {
       jobId
       title
     }

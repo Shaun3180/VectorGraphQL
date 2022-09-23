@@ -1,21 +1,15 @@
 ﻿mutation UpdatePerson(
-  $address1: String,
-  $address2: String,
   $email: String,
   $first: String!,
   $last: String!,
   $personId: ID!,
-  $phone: String,
   $username: String!
 ) {
   Person(personId: $personId) {
     update(
-      address1: $address1,
-      address2: $address2,
       email: $email,
       first: $first,
       last: $last,
-      phone: $phone,
       username: $username
     ) {
       personId

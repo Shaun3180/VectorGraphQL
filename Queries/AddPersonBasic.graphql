@@ -1,0 +1,20 @@
+﻿mutation AddPersonBasic(
+  $email: String,
+  $externalUniqueId: String,
+  $first: String!,
+  $last: String!,
+  $username: String!
+) {
+  addPerson(
+    email: $email,
+    externalUniqueId: $externalUniqueId,
+    first: $first,
+    last: $last,
+    username: $username
+  ) {
+    personId
+    first
+    last
+    username
+  }
+}

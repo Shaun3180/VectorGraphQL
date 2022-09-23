@@ -1,6 +1,18 @@
 ﻿/* Created by Shaun Geisert @ Colorado State University on 9/22/2022 */
 
+using VectorClasses;
+
 var vector = new Vector();
+
+Console.WriteLine();
+Console.WriteLine("---------- Getting user by external id ---------- ");
+var userByExternalId = await vector.GetUserByUniqueId("821161783"); // not sure why they are returning People instead of Person
+Console.WriteLine($"Returned user by external unique id: {userByExternalId.First} {userByExternalId.Last} {userByExternalId.ExternalUniqueId}");
+
+//Console.WriteLine();
+//Console.WriteLine("---------- Getting user by user name ---------- ");
+//var userByUserName = await vector.GetUserByUniqueId("sgarten"); // not sure why they are returning People instead of Person
+//Console.WriteLine($"Returned user by user name: {userByUserName.First} {userByUserName.Last} {userByUserName.Username}");
 
 Console.WriteLine("---------- Adding New Parent Classification/Position ---------- ");
 var newPosition = await vector.AddPosition("Student Type", "student-type", Guid.Empty);
@@ -37,18 +49,17 @@ foreach (var location in locations)
 //    UserName = "jpignat",
 //    PositionId = new Guid(newChildPosition.PositionId)
 //};
-//var createdPerson = await vector.AddPersonWithPosition(newUser);
+//var createdPerson = await vector.AddPerson(newUser);
 //Console.WriteLine($"Successfully created new user: {createdPerson.PersonId} {createdPerson.First}");
 
 Console.WriteLine();
 Console.WriteLine("---------- Adding a New User ---------- ");
-var newUser = new Person
+var newUser = new VectorStudent
 {
-    ExternalUniqueId = "12345678",
+    CsuId = "12345678",
     FirstName = "Julie",
     LastName = "Pignataro",
-    UserName = "jpignat",
-    PositionId = Guid.Empty
+    EName = "jpignat"
 };
 var createdPerson = await vector.AddPerson(newUser);
 Console.WriteLine($"Successfully created new user: {createdPerson.PersonId} {createdPerson.First}");
@@ -73,7 +84,7 @@ Console.WriteLine($"Returned created user: {user.PersonId} {user.Username} {user
 
 Console.WriteLine();
 Console.WriteLine("---------- Updating First Name For That User ---------- ");
-var p = new Person(user);
+var p = new VectorStudent(user);
 p.FirstName = p.FirstName + "2";
 var updatedUser = await vector.UpdateUser(p);
 Console.WriteLine($"Updated first name of user: {user.First} to {p.FirstName}");

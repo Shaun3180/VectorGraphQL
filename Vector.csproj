@@ -8,15 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Classes\InsuranceWaiverStatus.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <GraphQL Remove="GetPeople.graphql" />
     <GraphQL Remove="Queries\AddJob.graphql" />
     <GraphQL Remove="Queries\AddPerson.graphql" />
+    <GraphQL Remove="Queries\AddPersonBasic.graphql" />
     <GraphQL Remove="Queries\AddPersonWithPosition.graphql" />
     <GraphQL Remove="Queries\AddPosition.graphql" />
     <GraphQL Remove="Queries\DeactivatePerson.graphql" />
     <GraphQL Remove="Queries\GetCourses.graphql" />
     <GraphQL Remove="Queries\GetFirst100ActivePeopleAndProgress.graphql" />
     <GraphQL Remove="Queries\GetLocations.graphql" />
+    <GraphQL Remove="Queries\GetPersonAndProgressById.graphql" />
+    <GraphQL Remove="Queries\GetPersonAndProgressByUserName.graphql" />
     <GraphQL Remove="Queries\GetPersonById.graphql" />
     <GraphQL Remove="Queries\GetPositionById.graphql" />
     <GraphQL Remove="Queries\GetPositions.graphql" />
@@ -26,6 +33,7 @@
   <ItemGroup>
     <None Remove="GetPeople.graphql" />
     <None Remove="Queries\AddJob.graphql" />
+    <None Remove="Queries\AddPersonBasic.graphql" />
     <None Remove="Queries\AddPersonWithPosition.graphql" />
     <None Remove="Queries\AddPosition.graphql" />
     <None Remove="Queries\DeactivatePerson.graphql" />
@@ -33,6 +41,8 @@
     <None Remove="Queries\GetFirst100ActivePeopleAndProgress.graphql" />
     <None Remove="Queries\GetFirst100People.graphql" />
     <None Remove="Queries\GetLocations.graphql" />
+    <None Remove="Queries\GetPersonAndProgressById.graphql" />
+    <None Remove="Queries\GetPersonAndProgressByUserName.graphql" />
     <None Remove="Queries\GetPersonById.graphql" />
     <None Remove="Queries\GetPositionById.graphql" />
     <None Remove="Queries\GetPositions.graphql" />
@@ -41,6 +51,9 @@
 
   <ItemGroup>
     <AdditionalFiles Include="Queries\AddJob.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\AddPersonBasic.graphql">
       <GraphQL>true</GraphQL>
     </AdditionalFiles>
     <AdditionalFiles Include="Queries\AddPersonWithPosition.graphql">
@@ -56,6 +69,9 @@
       <GraphQL>true</GraphQL>
     </AdditionalFiles>
     <AdditionalFiles Include="Queries\GetLocations.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Queries\GetPersonAndProgressById.graphql">
       <GraphQL>true</GraphQL>
     </AdditionalFiles>
     <AdditionalFiles Include="Queries\GetPositionById.graphql">

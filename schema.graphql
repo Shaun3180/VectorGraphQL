@@ -31,6 +31,7 @@ Progress(progressId: ID!): Progress
 People(
 locationId: ID
 positionId: ID
+externalUniqueId: String
 active: Boolean
 after: ID
 before: ID

@@ -1,0 +1,31 @@
+﻿query GetPersonAndProgressByUserName($username: String) {
+ People (username: $username )
+    { nodes
+       { first 
+         last
+         personId
+         username
+         externalUniqueId
+         progress {
+            courseInfo { 
+               title 
+               courseInfoId }
+            completed
+            completeTime
+            progressId
+            maxQuizScore}
+            jobs {
+            jobId
+            beginDate
+            endDate
+            title
+            location {
+                name
+               } 
+            position {
+                name
+               }
+            } 
+       } 
+    }
+}
