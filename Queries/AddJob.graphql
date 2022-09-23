@@ -1,0 +1,8 @@
+﻿mutation AddJob($personId:ID!, $locationId:ID!, $positionId:ID!) {
+  Person(personId: $personId) {
+    addJob(locationId:$locationId, positionId:$positionId) {
+      jobId
+      title
+    }
+  }
+}

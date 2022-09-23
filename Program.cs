@@ -1,65 +1,84 @@
-﻿/* Questions for Vector:
- * 
-    * What's the difference between a position/classification and a location?
-    * How do you disassociate a position from a user?  
-    * How many distinct labels can you apply to one user?  Is there a limit?
-    * You can’t update a position or location via your API for a person as far as I can tell
-    * How do you activate someone via the API?
- */
+﻿/* Created by Shaun Geisert @ Colorado State University on 9/22/2022 */
 
 var vector = new Vector();
 
 Console.WriteLine("---------- Adding New Parent Classification/Position ---------- ");
-var newPosition = await vector.AddPosition("Campus", "campus", Guid.Empty);
-Console.WriteLine("Successfully created parent position: " + newPosition.PositionId);
+var newPosition = await vector.AddPosition("Student Type", "student-type", Guid.Empty);
+Console.WriteLine($"Successfully created parent position: {newPosition.Name}");
 
 Console.WriteLine();
 Console.WriteLine("---------- Adding New Child Classification/Position ---------- ");
-var newChildPosition = await vector.AddPosition("Online", "online", new Guid(newPosition.PositionId));
-Console.WriteLine("Successfully created child position: " + newPosition.PositionId);
+var newChildPosition = await vector.AddPosition("Returning", "returning", new Guid(newPosition.PositionId));
+Console.WriteLine($"Successfully created child position: {newChildPosition.Name}");
 
 Console.WriteLine();
 Console.WriteLine("---------- Getting All Classifications/Positions ---------- ");
 var positions = await vector.GetAllPositions();
 foreach (var position in positions)
 {
-    Console.WriteLine(position.PositionId + ": " + position.Name);
+    Console.WriteLine($"{position.PositionId}: {position.Name}");
 }
 
 Console.WriteLine();
-Console.WriteLine("---------- Adding a New User w/ Position Id We Just Created ---------- ");
-var newUser = new Person {
-    ExternalUniqueId = "820182056",
-    FirstName = "Joy",
-    LastName = "Akey",
-    UserName = "jakey",
-    PositionId = new Guid(newChildPosition.PositionId)
+Console.WriteLine("---------- Getting All Locations ---------- ");
+var locations = await vector.GetAllLocations();
+foreach (var location in locations)
+{
+    Console.WriteLine($"{location.LocationId}: {location.Name}");
+}
+
+//Console.WriteLine();
+//Console.WriteLine("---------- Adding a New User w/ Position Id We Just Created ---------- ");
+//var newUser = new Person
+//{
+//    ExternalUniqueId = "123",
+//    FirstName = "Julie",
+//    LastName = "Pignataro",
+//    UserName = "jpignat",
+//    PositionId = new Guid(newChildPosition.PositionId)
+//};
+//var createdPerson = await vector.AddPersonWithPosition(newUser);
+//Console.WriteLine($"Successfully created new user: {createdPerson.PersonId} {createdPerson.First}");
+
+Console.WriteLine();
+Console.WriteLine("---------- Adding a New User ---------- ");
+var newUser = new Person
+{
+    ExternalUniqueId = "12345678",
+    FirstName = "Julie",
+    LastName = "Pignataro",
+    UserName = "jpignat",
+    PositionId = Guid.Empty
 };
-var createdUser = await vector.AddUser(newUser);
+var createdPerson = await vector.AddPerson(newUser);
+Console.WriteLine($"Successfully created new user: {createdPerson.PersonId} {createdPerson.First}");
+
+Console.WriteLine();
+Console.WriteLine("---------- Adding a New Job to Existing User (using first location from above) ---------- ");
+var newJob = await vector.AddJobToPerson(new Guid(createdPerson.PersonId), new Guid(locations[0].LocationId), new Guid(positions[0].PositionId));
+Console.WriteLine($"Successfully assigned job to user: {createdPerson.PersonId}");
 
 Console.WriteLine();
 Console.WriteLine("---------- Getting First 100 Active Users ---------- ");
 var activeUsers = await vector.GetFirst100ActivePeopleAndProgress();
 foreach (var person in activeUsers)
 {
-    Console.WriteLine(person.PersonId + ": " + person.Username + " " + person.First + " " + person.Last);
+    Console.WriteLine($"{person.PersonId} {person.Username} {person.First}");
 }
 
 Console.WriteLine();
-Console.WriteLine("---------- Getting First User From Active User List ---------- ");
-var user = await vector.GetUserByGuid(new Guid(activeUsers[0].PersonId));
-Console.WriteLine(user.PersonId + ": " + user.Username + " " + user.First + " " + user.Last);
-
+Console.WriteLine("---------- Getting user we just created ---------- ");
+var user = await vector.GetUserByGuid(new Guid(createdPerson.PersonId));
+Console.WriteLine($"Returned created user: {user.PersonId} {user.Username} {user.First}");
 
 Console.WriteLine();
 Console.WriteLine("---------- Updating First Name For That User ---------- ");
 var p = new Person(user);
 p.FirstName = p.FirstName + "2";
 var updatedUser = await vector.UpdateUser(p);
-Console.WriteLine(user.PersonId + ": " + user.Username + " " + user.First + " " + user.Last);
+Console.WriteLine($"Updated first name of user: {user.First} to {p.FirstName}");
 
 Console.WriteLine();
 Console.WriteLine("---------- Deactivate the User We Just Updated ---------- ");
 var deactivatedUser = await vector.DeactivatePersonById(new Guid(user.PersonId));
-Console.WriteLine("Successfully deactivated: " + user.PersonId);
-return;
+Console.WriteLine($"Successfully deactivated: {user.PersonId} {user.Username} {user.First}");

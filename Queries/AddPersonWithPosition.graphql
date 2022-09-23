@@ -1,4 +1,4 @@
-﻿mutation AddPerson(
+﻿mutation AddPersonWithPosition(
   $address1: String,
   $address2: String,
   $beginDate: String,
@@ -7,6 +7,7 @@
   $first: String!,
   $last: String!,
   $phone: String,
+  $positionId: ID!,
   $username: String!
 ) {
   addPerson(
@@ -18,6 +19,7 @@
     first: $first,
     last: $last,
     phone: $phone,
+    positionId: $positionId,
     username: $username
   ) {
     personId
@@ -26,3 +28,4 @@
     username
   }
 }
+	

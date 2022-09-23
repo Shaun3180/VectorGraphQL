@@ -15,9 +15,13 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new ClientServiceProvider(global::Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(serviceCollection));
             });
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => new global::VectorGraphQL.State.VectorClientStoreAccessor(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityIdSerializer>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp))));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.AddJobMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.AddPersonWithPositionMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.DeactivatePersonMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.AddPositionMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetFirst100ActivePeopleAndProgressQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetAllLocationsQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetPositionByIdQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.UpdatePersonMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetPersonByIdQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetCourseByIdQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
@@ -55,6 +59,20 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.TimeSpanSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.JsonSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializerResolver>(services, sp => new global::StrawberryShake.Serialization.SerializerResolver(global::System.Linq.Enumerable.Concat(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(parentServices), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(sp))));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddJobResult>, global::VectorGraphQL.State.AddJobResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddJobResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.IAddJobMutation>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddJobResult>, global::VectorGraphQL.State.AddJobBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::VectorGraphQL.IAddJobResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddJobResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddJobResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.AddJobMutation>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.IAddJobMutation>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.AddJobMutation>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddPersonWithPositionResult>, global::VectorGraphQL.State.AddPersonWithPositionResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddPersonWithPositionResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.IAddPersonWithPositionMutation>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddPersonWithPositionResult>, global::VectorGraphQL.State.AddPersonWithPositionBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::VectorGraphQL.IAddPersonWithPositionResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddPersonWithPositionResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddPersonWithPositionResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.AddPersonWithPositionMutation>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.IAddPersonWithPositionMutation>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.AddPersonWithPositionMutation>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IDeactivatePersonResult>, global::VectorGraphQL.State.DeactivatePersonResultFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IDeactivatePersonResult>>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.IDeactivatePersonMutation>(sp));
@@ -76,6 +94,20 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.GetFirst100ActivePeopleAndProgressQuery>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetFirst100ActivePeopleAndProgressQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetAllLocationsResult>, global::VectorGraphQL.State.GetAllLocationsResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetAllLocationsResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.IGetAllLocationsQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetAllLocationsResult>, global::VectorGraphQL.State.GetAllLocationsBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::VectorGraphQL.IGetAllLocationsResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetAllLocationsResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetAllLocationsResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.GetAllLocationsQuery>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.IGetAllLocationsQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetAllLocationsQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetPositionByIdResult>, global::VectorGraphQL.State.GetPositionByIdResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetPositionByIdResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.IGetPositionByIdQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetPositionByIdResult>, global::VectorGraphQL.State.GetPositionByIdBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::VectorGraphQL.IGetPositionByIdResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetPositionByIdResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetPositionByIdResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.GetPositionByIdQuery>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::VectorGraphQL.IGetPositionByIdQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.GetPositionByIdQuery>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IUpdatePersonResult>, global::VectorGraphQL.State.UpdatePersonResultFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IUpdatePersonResult>>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::VectorGraphQL.IUpdatePersonMutation>(sp));
@@ -150,6 +182,408 @@ namespace Microsoft.Extensions.DependencyInjection
 
 namespace VectorGraphQL
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJobResult : global::System.IEquatable<AddJobResult>, IAddJobResult
+    {
+        public AddJobResult(global::VectorGraphQL.IAddJob_Person? person)
+        {
+            Person = person;
+        }
+
+        public global::VectorGraphQL.IAddJob_Person? Person { get; }
+
+        public virtual global::System.Boolean Equals(AddJobResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Person is null && other.Person is null) || Person != null && Person.Equals(other.Person)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddJobResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Person != null)
+                {
+                    hash ^= 397 * Person.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJob_Person_PersonMutation : global::System.IEquatable<AddJob_Person_PersonMutation>, IAddJob_Person_PersonMutation
+    {
+        public AddJob_Person_PersonMutation(global::VectorGraphQL.IAddJob_Person_AddJob? addJob)
+        {
+            AddJob = addJob;
+        }
+
+        public global::VectorGraphQL.IAddJob_Person_AddJob? AddJob { get; }
+
+        public virtual global::System.Boolean Equals(AddJob_Person_PersonMutation? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((AddJob is null && other.AddJob is null) || AddJob != null && AddJob.Equals(other.AddJob)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddJob_Person_PersonMutation)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (AddJob != null)
+                {
+                    hash ^= 397 * AddJob.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJob_Person_AddJob_Job : global::System.IEquatable<AddJob_Person_AddJob_Job>, IAddJob_Person_AddJob_Job
+    {
+        public AddJob_Person_AddJob_Job(global::System.String jobId, global::System.String? title)
+        {
+            JobId = jobId;
+            Title = title;
+        }
+
+        public global::System.String JobId { get; }
+
+        public global::System.String? Title { get; }
+
+        public virtual global::System.Boolean Equals(AddJob_Person_AddJob_Job? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (JobId.Equals(other.JobId)) && ((Title is null && other.Title is null) || Title != null && Title.Equals(other.Title));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddJob_Person_AddJob_Job)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * JobId.GetHashCode();
+                if (Title != null)
+                {
+                    hash ^= 397 * Title.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddJobResult
+    {
+        public global::VectorGraphQL.IAddJob_Person? Person { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddJob_Person
+    {
+        public global::VectorGraphQL.IAddJob_Person_AddJob? AddJob { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddJob_Person_PersonMutation : IAddJob_Person
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddJob_Person_AddJob
+    {
+        public global::System.String JobId { get; }
+
+        public global::System.String? Title { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddJob_Person_AddJob_Job : IAddJob_Person_AddJob
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddPersonWithPositionResult : global::System.IEquatable<AddPersonWithPositionResult>, IAddPersonWithPositionResult
+    {
+        public AddPersonWithPositionResult(global::VectorGraphQL.IAddPersonWithPosition_AddPerson? addPerson)
+        {
+            AddPerson = addPerson;
+        }
+
+        public global::VectorGraphQL.IAddPersonWithPosition_AddPerson? AddPerson { get; }
+
+        public virtual global::System.Boolean Equals(AddPersonWithPositionResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((AddPerson is null && other.AddPerson is null) || AddPerson != null && AddPerson.Equals(other.AddPerson)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddPersonWithPositionResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (AddPerson != null)
+                {
+                    hash ^= 397 * AddPerson.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddPersonWithPosition_AddPerson_Person : global::System.IEquatable<AddPersonWithPosition_AddPerson_Person>, IAddPersonWithPosition_AddPerson_Person
+    {
+        public AddPersonWithPosition_AddPerson_Person(global::System.String personId, global::System.String? first, global::System.String? last, global::System.String? username)
+        {
+            PersonId = personId;
+            First = first;
+            Last = last;
+            Username = username;
+        }
+
+        public global::System.String PersonId { get; }
+
+        public global::System.String? First { get; }
+
+        public global::System.String? Last { get; }
+
+        public global::System.String? Username { get; }
+
+        public virtual global::System.Boolean Equals(AddPersonWithPosition_AddPerson_Person? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (PersonId.Equals(other.PersonId)) && ((First is null && other.First is null) || First != null && First.Equals(other.First)) && ((Last is null && other.Last is null) || Last != null && Last.Equals(other.Last)) && ((Username is null && other.Username is null) || Username != null && Username.Equals(other.Username));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddPersonWithPosition_AddPerson_Person)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * PersonId.GetHashCode();
+                if (First != null)
+                {
+                    hash ^= 397 * First.GetHashCode();
+                }
+
+                if (Last != null)
+                {
+                    hash ^= 397 * Last.GetHashCode();
+                }
+
+                if (Username != null)
+                {
+                    hash ^= 397 * Username.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddPersonWithPositionResult
+    {
+        public global::VectorGraphQL.IAddPersonWithPosition_AddPerson? AddPerson { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddPersonWithPosition_AddPerson
+    {
+        public global::System.String PersonId { get; }
+
+        public global::System.String? First { get; }
+
+        public global::System.String? Last { get; }
+
+        public global::System.String? Username { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddPersonWithPosition_AddPerson_Person : IAddPersonWithPosition_AddPerson
+    {
+    }
+
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class DeactivatePersonResult : global::System.IEquatable<DeactivatePersonResult>, IDeactivatePersonResult
     {
@@ -437,12 +871,15 @@ namespace VectorGraphQL
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class AddPosition_AddPosition_Position : global::System.IEquatable<AddPosition_AddPosition_Position>, IAddPosition_AddPosition_Position
     {
-        public AddPosition_AddPosition_Position(global::System.String positionId)
+        public AddPosition_AddPosition_Position(global::System.String positionId, global::System.String? name)
         {
             PositionId = positionId;
+            Name = name;
         }
 
         public global::System.String PositionId { get; }
+
+        public global::System.String? Name { get; }
 
         public virtual global::System.Boolean Equals(AddPosition_AddPosition_Position? other)
         {
@@ -461,7 +898,7 @@ namespace VectorGraphQL
                 return false;
             }
 
-            return (PositionId.Equals(other.PositionId));
+            return (PositionId.Equals(other.PositionId)) && ((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name));
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -490,6 +927,11 @@ namespace VectorGraphQL
             {
                 int hash = 5;
                 hash ^= 397 * PositionId.GetHashCode();
+                if (Name != null)
+                {
+                    hash ^= 397 * Name.GetHashCode();
+                }
+
                 return hash;
             }
         }
@@ -505,6 +947,8 @@ namespace VectorGraphQL
     public partial interface IAddPosition_AddPosition
     {
         public global::System.String PositionId { get; }
+
+        public global::System.String? Name { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
@@ -1390,6 +1834,628 @@ namespace VectorGraphQL
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial interface IGetFirst100ActivePeopleAndProgress_People_Nodes_Jobs_Position_Position : IGetFirst100ActivePeopleAndProgress_People_Nodes_Jobs_Position
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocationsResult : global::System.IEquatable<GetAllLocationsResult>, IGetAllLocationsResult
+    {
+        public GetAllLocationsResult(global::VectorGraphQL.IGetAllLocations_Locations? locations)
+        {
+            Locations = locations;
+        }
+
+        public global::VectorGraphQL.IGetAllLocations_Locations? Locations { get; }
+
+        public virtual global::System.Boolean Equals(GetAllLocationsResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Locations is null && other.Locations is null) || Locations != null && Locations.Equals(other.Locations)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetAllLocationsResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Locations != null)
+                {
+                    hash ^= 397 * Locations.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocations_Locations_PagedLocation : global::System.IEquatable<GetAllLocations_Locations_PagedLocation>, IGetAllLocations_Locations_PagedLocation
+    {
+        public GetAllLocations_Locations_PagedLocation(global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes?>? nodes, global::VectorGraphQL.IGetAllLocations_Locations_PageInfo? pageInfo)
+        {
+            Nodes = nodes;
+            PageInfo = pageInfo;
+        }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes?>? Nodes { get; }
+
+        public global::VectorGraphQL.IGetAllLocations_Locations_PageInfo? PageInfo { get; }
+
+        public virtual global::System.Boolean Equals(GetAllLocations_Locations_PagedLocation? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (global::StrawberryShake.Helper.ComparisonHelper.SequenceEqual(Nodes, other.Nodes)) && ((PageInfo is null && other.PageInfo is null) || PageInfo != null && PageInfo.Equals(other.PageInfo));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetAllLocations_Locations_PagedLocation)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Nodes != null)
+                {
+                    foreach (var Nodes_elm in Nodes)
+                    {
+                        if (Nodes_elm != null)
+                        {
+                            hash ^= 397 * Nodes_elm.GetHashCode();
+                        }
+                    }
+                }
+
+                if (PageInfo != null)
+                {
+                    hash ^= 397 * PageInfo.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocations_Locations_Nodes_Location : global::System.IEquatable<GetAllLocations_Locations_Nodes_Location>, IGetAllLocations_Locations_Nodes_Location
+    {
+        public GetAllLocations_Locations_Nodes_Location(global::System.String locationId, global::System.String? name, global::System.String? code, global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes_Children?>? children)
+        {
+            LocationId = locationId;
+            Name = name;
+            Code = code;
+            Children = children;
+        }
+
+        public global::System.String LocationId { get; }
+
+        public global::System.String? Name { get; }
+
+        public global::System.String? Code { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes_Children?>? Children { get; }
+
+        public virtual global::System.Boolean Equals(GetAllLocations_Locations_Nodes_Location? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (LocationId.Equals(other.LocationId)) && ((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name)) && ((Code is null && other.Code is null) || Code != null && Code.Equals(other.Code)) && global::StrawberryShake.Helper.ComparisonHelper.SequenceEqual(Children, other.Children);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetAllLocations_Locations_Nodes_Location)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * LocationId.GetHashCode();
+                if (Name != null)
+                {
+                    hash ^= 397 * Name.GetHashCode();
+                }
+
+                if (Code != null)
+                {
+                    hash ^= 397 * Code.GetHashCode();
+                }
+
+                if (Children != null)
+                {
+                    foreach (var Children_elm in Children)
+                    {
+                        if (Children_elm != null)
+                        {
+                            hash ^= 397 * Children_elm.GetHashCode();
+                        }
+                    }
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocations_Locations_PageInfo_PageInfo : global::System.IEquatable<GetAllLocations_Locations_PageInfo_PageInfo>, IGetAllLocations_Locations_PageInfo_PageInfo
+    {
+        public GetAllLocations_Locations_PageInfo_PageInfo(global::System.Int32? count, global::System.Int32? totalCount, global::System.String? startCursor, global::System.String? endCursor, global::System.Boolean hasNextPage, global::System.Boolean hasPreviousPage)
+        {
+            Count = count;
+            TotalCount = totalCount;
+            StartCursor = startCursor;
+            EndCursor = endCursor;
+            HasNextPage = hasNextPage;
+            HasPreviousPage = hasPreviousPage;
+        }
+
+        public global::System.Int32? Count { get; }
+
+        public global::System.Int32? TotalCount { get; }
+
+        public global::System.String? StartCursor { get; }
+
+        public global::System.String? EndCursor { get; }
+
+        public global::System.Boolean HasNextPage { get; }
+
+        public global::System.Boolean HasPreviousPage { get; }
+
+        public virtual global::System.Boolean Equals(GetAllLocations_Locations_PageInfo_PageInfo? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Count == other.Count) && TotalCount == other.TotalCount && ((StartCursor is null && other.StartCursor is null) || StartCursor != null && StartCursor.Equals(other.StartCursor)) && ((EndCursor is null && other.EndCursor is null) || EndCursor != null && EndCursor.Equals(other.EndCursor)) && HasNextPage == other.HasNextPage && HasPreviousPage == other.HasPreviousPage;
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetAllLocations_Locations_PageInfo_PageInfo)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Count != null)
+                {
+                    hash ^= 397 * Count.GetHashCode();
+                }
+
+                if (TotalCount != null)
+                {
+                    hash ^= 397 * TotalCount.GetHashCode();
+                }
+
+                if (StartCursor != null)
+                {
+                    hash ^= 397 * StartCursor.GetHashCode();
+                }
+
+                if (EndCursor != null)
+                {
+                    hash ^= 397 * EndCursor.GetHashCode();
+                }
+
+                hash ^= 397 * HasNextPage.GetHashCode();
+                hash ^= 397 * HasPreviousPage.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocations_Locations_Nodes_Children_Location : global::System.IEquatable<GetAllLocations_Locations_Nodes_Children_Location>, IGetAllLocations_Locations_Nodes_Children_Location
+    {
+        public GetAllLocations_Locations_Nodes_Children_Location(global::System.String? name)
+        {
+            Name = name;
+        }
+
+        public global::System.String? Name { get; }
+
+        public virtual global::System.Boolean Equals(GetAllLocations_Locations_Nodes_Children_Location? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetAllLocations_Locations_Nodes_Children_Location)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Name != null)
+                {
+                    hash ^= 397 * Name.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocationsResult
+    {
+        public global::VectorGraphQL.IGetAllLocations_Locations? Locations { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations
+    {
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes?>? Nodes { get; }
+
+        public global::VectorGraphQL.IGetAllLocations_Locations_PageInfo? PageInfo { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations_PagedLocation : IGetAllLocations_Locations
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations_Nodes
+    {
+        public global::System.String LocationId { get; }
+
+        public global::System.String? Name { get; }
+
+        public global::System.String? Code { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes_Children?>? Children { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations_Nodes_Location : IGetAllLocations_Locations_Nodes
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations_PageInfo
+    {
+        public global::System.Int32? Count { get; }
+
+        public global::System.Int32? TotalCount { get; }
+
+        public global::System.String? StartCursor { get; }
+
+        public global::System.String? EndCursor { get; }
+
+        public global::System.Boolean HasNextPage { get; }
+
+        public global::System.Boolean HasPreviousPage { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations_PageInfo_PageInfo : IGetAllLocations_Locations_PageInfo
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations_Nodes_Children
+    {
+        public global::System.String? Name { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocations_Locations_Nodes_Children_Location : IGetAllLocations_Locations_Nodes_Children
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetPositionByIdResult : global::System.IEquatable<GetPositionByIdResult>, IGetPositionByIdResult
+    {
+        public GetPositionByIdResult(global::VectorGraphQL.IGetPositionById_Position? position)
+        {
+            Position = position;
+        }
+
+        public global::VectorGraphQL.IGetPositionById_Position? Position { get; }
+
+        public virtual global::System.Boolean Equals(GetPositionByIdResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Position is null && other.Position is null) || Position != null && Position.Equals(other.Position)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetPositionByIdResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Position != null)
+                {
+                    hash ^= 397 * Position.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetPositionById_Position_Position : global::System.IEquatable<GetPositionById_Position_Position>, IGetPositionById_Position_Position
+    {
+        public GetPositionById_Position_Position(global::System.String? code, global::System.String? name)
+        {
+            Code = code;
+            Name = name;
+        }
+
+        public global::System.String? Code { get; }
+
+        public global::System.String? Name { get; }
+
+        public virtual global::System.Boolean Equals(GetPositionById_Position_Position? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Code is null && other.Code is null) || Code != null && Code.Equals(other.Code))) && ((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetPositionById_Position_Position)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Code != null)
+                {
+                    hash ^= 397 * Code.GetHashCode();
+                }
+
+                if (Name != null)
+                {
+                    hash ^= 397 * Name.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetPositionByIdResult
+    {
+        public global::VectorGraphQL.IGetPositionById_Position? Position { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetPositionById_Position
+    {
+        public global::System.String? Code { get; }
+
+        public global::System.String? Name { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetPositionById_Position_Position : IGetPositionById_Position
     {
     }
 
@@ -2469,12 +3535,21 @@ namespace VectorGraphQL
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class AddPerson_AddPerson_Person : global::System.IEquatable<AddPerson_AddPerson_Person>, IAddPerson_AddPerson_Person
     {
-        public AddPerson_AddPerson_Person(global::System.String personId)
+        public AddPerson_AddPerson_Person(global::System.String personId, global::System.String? first, global::System.String? last, global::System.String? username)
         {
             PersonId = personId;
+            First = first;
+            Last = last;
+            Username = username;
         }
 
         public global::System.String PersonId { get; }
+
+        public global::System.String? First { get; }
+
+        public global::System.String? Last { get; }
+
+        public global::System.String? Username { get; }
 
         public virtual global::System.Boolean Equals(AddPerson_AddPerson_Person? other)
         {
@@ -2493,7 +3568,7 @@ namespace VectorGraphQL
                 return false;
             }
 
-            return (PersonId.Equals(other.PersonId));
+            return (PersonId.Equals(other.PersonId)) && ((First is null && other.First is null) || First != null && First.Equals(other.First)) && ((Last is null && other.Last is null) || Last != null && Last.Equals(other.Last)) && ((Username is null && other.Username is null) || Username != null && Username.Equals(other.Username));
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -2522,6 +3597,21 @@ namespace VectorGraphQL
             {
                 int hash = 5;
                 hash ^= 397 * PersonId.GetHashCode();
+                if (First != null)
+                {
+                    hash ^= 397 * First.GetHashCode();
+                }
+
+                if (Last != null)
+                {
+                    hash ^= 397 * Last.GetHashCode();
+                }
+
+                if (Username != null)
+                {
+                    hash ^= 397 * Username.GetHashCode();
+                }
+
                 return hash;
             }
         }
@@ -2537,6 +3627,12 @@ namespace VectorGraphQL
     public partial interface IAddPerson_AddPerson
     {
         public global::System.String PersonId { get; }
+
+        public global::System.String? First { get; }
+
+        public global::System.String? Last { get; }
+
+        public global::System.String? Username { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
@@ -2820,6 +3916,388 @@ namespace VectorGraphQL
     }
 
     /// <summary>
+    /// Represents the operation service of the AddJob GraphQL operation
+    /// <code>
+    /// mutation AddJob($personId: ID!, $locationId: ID!, $positionId: ID!) {
+    ///   Person(personId: $personId) {
+    ///     __typename
+    ///     addJob(locationId: $locationId, positionId: $positionId) {
+    ///       __typename
+    ///       jobId
+    ///       title
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJobMutationDocument : global::StrawberryShake.IDocument
+    {
+        private AddJobMutationDocument()
+        {
+        }
+
+        public static AddJobMutationDocument Instance { get; } = new AddJobMutationDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Mutation;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x41, 0x64, 0x64, 0x4a, 0x6f, 0x62, 0x28, 0x24, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x21, 0x2c, 0x20, 0x24, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x21, 0x2c, 0x20, 0x24, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x28, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x49, 0x64, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x61, 0x64, 0x64, 0x4a, 0x6f, 0x62, 0x28, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x2c, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x20, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "d945604d99ad80d2332ac959552b405e");
+        public override global::System.String ToString()
+        {
+#if NETSTANDARD2_0
+        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body);
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the AddJob GraphQL operation
+    /// <code>
+    /// mutation AddJob($personId: ID!, $locationId: ID!, $positionId: ID!) {
+    ///   Person(personId: $personId) {
+    ///     __typename
+    ///     addJob(locationId: $locationId, positionId: $positionId) {
+    ///       __typename
+    ///       jobId
+    ///       title
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJobMutation : global::VectorGraphQL.IAddJobMutation
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<IAddJobResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _iDFormatter;
+        public AddJobMutation(global::StrawberryShake.IOperationExecutor<IAddJobResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _iDFormatter = serializerResolver.GetInputValueFormatter("ID");
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IAddJobResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddJobResult>> ExecuteAsync(global::System.String personId, global::System.String locationId, global::System.String positionId, global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(personId, locationId, positionId);
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IAddJobResult>> Watch(global::System.String personId, global::System.String locationId, global::System.String positionId, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest(personId, locationId, positionId);
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.String personId, global::System.String locationId, global::System.String positionId)
+        {
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("personId", FormatPersonId(personId));
+            variables.Add("locationId", FormatLocationId(locationId));
+            variables.Add("positionId", FormatPositionId(positionId));
+            return CreateRequest(variables);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: AddJobMutationDocument.Instance.Hash.Value, name: "AddJob", document: AddJobMutationDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatPersonId(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _iDFormatter.Format(value);
+        }
+
+        private global::System.Object? FormatLocationId(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _iDFormatter.Format(value);
+        }
+
+        private global::System.Object? FormatPositionId(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _iDFormatter.Format(value);
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest(variables!);
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the AddJob GraphQL operation
+    /// <code>
+    /// mutation AddJob($personId: ID!, $locationId: ID!, $positionId: ID!) {
+    ///   Person(personId: $personId) {
+    ///     __typename
+    ///     addJob(locationId: $locationId, positionId: $positionId) {
+    ///       __typename
+    ///       jobId
+    ///       title
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddJobMutation : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddJobResult>> ExecuteAsync(global::System.String personId, global::System.String locationId, global::System.String positionId, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IAddJobResult>> Watch(global::System.String personId, global::System.String locationId, global::System.String positionId, global::StrawberryShake.ExecutionStrategy? strategy = null);
+    }
+
+    /// <summary>
+    /// Represents the operation service of the AddPersonWithPosition GraphQL operation
+    /// <code>
+    /// mutation AddPersonWithPosition($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $positionId: ID!, $username: String!) {
+    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, positionId: $positionId, username: $username) {
+    ///     __typename
+    ///     personId
+    ///     first
+    ///     last
+    ///     username
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddPersonWithPositionMutationDocument : global::StrawberryShake.IDocument
+    {
+        private AddPersonWithPositionMutationDocument()
+        {
+        }
+
+        public static AddPersonWithPositionMutationDocument Instance { get; } = new AddPersonWithPositionMutationDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Mutation;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x41, 0x64, 0x64, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x57, 0x69, 0x74, 0x68, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x28, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x6c, 0x61, 0x73, 0x74, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x21, 0x2c, 0x20, 0x24, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x61, 0x64, 0x64, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x28, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x3a, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x2c, 0x20, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x3a, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x2c, 0x20, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x3a, 0x20, 0x24, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x2c, 0x20, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x20, 0x24, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x2c, 0x20, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x2c, 0x20, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x24, 0x66, 0x69, 0x72, 0x73, 0x74, 0x2c, 0x20, 0x6c, 0x61, 0x73, 0x74, 0x3a, 0x20, 0x24, 0x6c, 0x61, 0x73, 0x74, 0x2c, 0x20, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x3a, 0x20, 0x24, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x2c, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x2c, 0x20, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x24, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x66, 0x69, 0x72, 0x73, 0x74, 0x20, 0x6c, 0x61, 0x73, 0x74, 0x20, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "8e62985c8a6b919a116f094b02fdded3");
+        public override global::System.String ToString()
+        {
+#if NETSTANDARD2_0
+        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body);
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the AddPersonWithPosition GraphQL operation
+    /// <code>
+    /// mutation AddPersonWithPosition($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $positionId: ID!, $username: String!) {
+    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, positionId: $positionId, username: $username) {
+    ///     __typename
+    ///     personId
+    ///     first
+    ///     last
+    ///     username
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddPersonWithPositionMutation : global::VectorGraphQL.IAddPersonWithPositionMutation
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<IAddPersonWithPositionResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _stringFormatter;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _iDFormatter;
+        public AddPersonWithPositionMutation(global::StrawberryShake.IOperationExecutor<IAddPersonWithPositionResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _stringFormatter = serializerResolver.GetInputValueFormatter("String");
+            _iDFormatter = serializerResolver.GetInputValueFormatter("ID");
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IAddPersonWithPositionResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddPersonWithPositionResult>> ExecuteAsync(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(address1, address2, beginDate, email, externalUniqueId, first, last, phone, positionId, username);
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IAddPersonWithPositionResult>> Watch(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest(address1, address2, beginDate, email, externalUniqueId, first, last, phone, positionId, username);
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username)
+        {
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("address1", FormatAddress1(address1));
+            variables.Add("address2", FormatAddress2(address2));
+            variables.Add("beginDate", FormatBeginDate(beginDate));
+            variables.Add("email", FormatEmail(email));
+            variables.Add("externalUniqueId", FormatExternalUniqueId(externalUniqueId));
+            variables.Add("first", FormatFirst(first));
+            variables.Add("last", FormatLast(last));
+            variables.Add("phone", FormatPhone(phone));
+            variables.Add("positionId", FormatPositionId(positionId));
+            variables.Add("username", FormatUsername(username));
+            return CreateRequest(variables);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: AddPersonWithPositionMutationDocument.Instance.Hash.Value, name: "AddPersonWithPosition", document: AddPersonWithPositionMutationDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatAddress1(global::System.String? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _stringFormatter.Format(value);
+            }
+        }
+
+        private global::System.Object? FormatAddress2(global::System.String? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _stringFormatter.Format(value);
+            }
+        }
+
+        private global::System.Object? FormatBeginDate(global::System.String? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _stringFormatter.Format(value);
+            }
+        }
+
+        private global::System.Object? FormatEmail(global::System.String? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _stringFormatter.Format(value);
+            }
+        }
+
+        private global::System.Object? FormatExternalUniqueId(global::System.String? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _stringFormatter.Format(value);
+            }
+        }
+
+        private global::System.Object? FormatFirst(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _stringFormatter.Format(value);
+        }
+
+        private global::System.Object? FormatLast(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _stringFormatter.Format(value);
+        }
+
+        private global::System.Object? FormatPhone(global::System.String? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _stringFormatter.Format(value);
+            }
+        }
+
+        private global::System.Object? FormatPositionId(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _iDFormatter.Format(value);
+        }
+
+        private global::System.Object? FormatUsername(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _stringFormatter.Format(value);
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest(variables!);
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the AddPersonWithPosition GraphQL operation
+    /// <code>
+    /// mutation AddPersonWithPosition($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $positionId: ID!, $username: String!) {
+    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, positionId: $positionId, username: $username) {
+    ///     __typename
+    ///     personId
+    ///     first
+    ///     last
+    ///     username
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IAddPersonWithPositionMutation : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddPersonWithPositionResult>> ExecuteAsync(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IAddPersonWithPositionResult>> Watch(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::StrawberryShake.ExecutionStrategy? strategy = null);
+    }
+
+    /// <summary>
     /// Represents the operation service of the DeactivatePerson GraphQL operation
     /// <code>
     /// mutation DeactivatePerson($personId: ID!) {
@@ -2948,6 +4426,7 @@ namespace VectorGraphQL
     ///   addPosition(name: $name, code: $code, parentId: $parentId) {
     ///     __typename
     ///     positionId
+    ///     name
     ///   }
     /// }
     /// </code>
@@ -2961,8 +4440,8 @@ namespace VectorGraphQL
 
         public static AddPositionMutationDocument Instance { get; } = new AddPositionMutationDocument();
         public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Mutation;
-        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x41, 0x64, 0x64, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x28, 0x24, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x63, 0x6f, 0x64, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x29, 0x20, 0x7b, 0x20, 0x61, 0x64, 0x64, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x28, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x24, 0x6e, 0x61, 0x6d, 0x65, 0x2c, 0x20, 0x63, 0x6f, 0x64, 0x65, 0x3a, 0x20, 0x24, 0x63, 0x6f, 0x64, 0x65, 0x2c, 0x20, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x7d, 0x20, 0x7d};
-        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "23b53640bdce02c0272f9778f102611d");
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x41, 0x64, 0x64, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x28, 0x24, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x63, 0x6f, 0x64, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x29, 0x20, 0x7b, 0x20, 0x61, 0x64, 0x64, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x28, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x24, 0x6e, 0x61, 0x6d, 0x65, 0x2c, 0x20, 0x63, 0x6f, 0x64, 0x65, 0x3a, 0x20, 0x24, 0x63, 0x6f, 0x64, 0x65, 0x2c, 0x20, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "419d00219d8788115e724c130a292a90");
         public override global::System.String ToString()
         {
 #if NETSTANDARD2_0
@@ -2980,6 +4459,7 @@ namespace VectorGraphQL
     ///   addPosition(name: $name, code: $code, parentId: $parentId) {
     ///     __typename
     ///     positionId
+    ///     name
     ///   }
     /// }
     /// </code>
@@ -3071,6 +4551,7 @@ namespace VectorGraphQL
     ///   addPosition(name: $name, code: $code, parentId: $parentId) {
     ///     __typename
     ///     positionId
+    ///     name
     ///   }
     /// }
     /// </code>
@@ -3308,6 +4789,275 @@ namespace VectorGraphQL
     {
         global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetFirst100ActivePeopleAndProgressResult>> ExecuteAsync(global::System.Threading.CancellationToken cancellationToken = default);
         global::System.IObservable<global::StrawberryShake.IOperationResult<IGetFirst100ActivePeopleAndProgressResult>> Watch(global::StrawberryShake.ExecutionStrategy? strategy = null);
+    }
+
+    /// <summary>
+    /// Represents the operation service of the GetAllLocations GraphQL operation
+    /// <code>
+    /// query GetAllLocations {
+    ///   Locations(first: 100) {
+    ///     __typename
+    ///     nodes {
+    ///       __typename
+    ///       locationId
+    ///       name
+    ///       code
+    ///       children {
+    ///         __typename
+    ///         name
+    ///       }
+    ///     }
+    ///     pageInfo {
+    ///       __typename
+    ///       count
+    ///       totalCount
+    ///       startCursor
+    ///       endCursor
+    ///       hasNextPage
+    ///       hasPreviousPage
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocationsQueryDocument : global::StrawberryShake.IDocument
+    {
+        private GetAllLocationsQueryDocument()
+        {
+        }
+
+        public static GetAllLocationsQueryDocument Instance { get; } = new GetAllLocationsQueryDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x20, 0x7b, 0x20, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x28, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x31, 0x30, 0x30, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6e, 0x6f, 0x64, 0x65, 0x73, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x6f, 0x64, 0x65, 0x20, 0x63, 0x68, 0x69, 0x6c, 0x64, 0x72, 0x65, 0x6e, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x70, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x20, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x65, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x68, 0x61, 0x73, 0x4e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x20, 0x68, 0x61, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x50, 0x61, 0x67, 0x65, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "c6371f9f396f1f30e43372e319fcb462");
+        public override global::System.String ToString()
+        {
+#if NETSTANDARD2_0
+        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body);
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the GetAllLocations GraphQL operation
+    /// <code>
+    /// query GetAllLocations {
+    ///   Locations(first: 100) {
+    ///     __typename
+    ///     nodes {
+    ///       __typename
+    ///       locationId
+    ///       name
+    ///       code
+    ///       children {
+    ///         __typename
+    ///         name
+    ///       }
+    ///     }
+    ///     pageInfo {
+    ///       __typename
+    ///       count
+    ///       totalCount
+    ///       startCursor
+    ///       endCursor
+    ///       hasNextPage
+    ///       hasPreviousPage
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocationsQuery : global::VectorGraphQL.IGetAllLocationsQuery
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<IGetAllLocationsResult> _operationExecutor;
+        public GetAllLocationsQuery(global::StrawberryShake.IOperationExecutor<IGetAllLocationsResult> operationExecutor)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IGetAllLocationsResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetAllLocationsResult>> ExecuteAsync(global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest();
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IGetAllLocationsResult>> Watch(global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest();
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest()
+        {
+            return CreateRequest(null);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: GetAllLocationsQueryDocument.Instance.Hash.Value, name: "GetAllLocations", document: GetAllLocationsQueryDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default);
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest();
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the GetAllLocations GraphQL operation
+    /// <code>
+    /// query GetAllLocations {
+    ///   Locations(first: 100) {
+    ///     __typename
+    ///     nodes {
+    ///       __typename
+    ///       locationId
+    ///       name
+    ///       code
+    ///       children {
+    ///         __typename
+    ///         name
+    ///       }
+    ///     }
+    ///     pageInfo {
+    ///       __typename
+    ///       count
+    ///       totalCount
+    ///       startCursor
+    ///       endCursor
+    ///       hasNextPage
+    ///       hasPreviousPage
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllLocationsQuery : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetAllLocationsResult>> ExecuteAsync(global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IGetAllLocationsResult>> Watch(global::StrawberryShake.ExecutionStrategy? strategy = null);
+    }
+
+    /// <summary>
+    /// Represents the operation service of the GetPositionById GraphQL operation
+    /// <code>
+    /// query GetPositionById($id: ID!) {
+    ///   Position(positionId: $id) {
+    ///     __typename
+    ///     code
+    ///     name
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetPositionByIdQueryDocument : global::StrawberryShake.IDocument
+    {
+        private GetPositionByIdQueryDocument()
+        {
+        }
+
+        public static GetPositionByIdQueryDocument Instance { get; } = new GetPositionByIdQueryDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x79, 0x49, 0x64, 0x28, 0x24, 0x69, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x28, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x69, 0x64, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x6f, 0x64, 0x65, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "5c9da0d2d67713cea2cebbd0e2008e26");
+        public override global::System.String ToString()
+        {
+#if NETSTANDARD2_0
+        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body);
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the GetPositionById GraphQL operation
+    /// <code>
+    /// query GetPositionById($id: ID!) {
+    ///   Position(positionId: $id) {
+    ///     __typename
+    ///     code
+    ///     name
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetPositionByIdQuery : global::VectorGraphQL.IGetPositionByIdQuery
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<IGetPositionByIdResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _iDFormatter;
+        public GetPositionByIdQuery(global::StrawberryShake.IOperationExecutor<IGetPositionByIdResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _iDFormatter = serializerResolver.GetInputValueFormatter("ID");
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IGetPositionByIdResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetPositionByIdResult>> ExecuteAsync(global::System.String id, global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(id);
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IGetPositionByIdResult>> Watch(global::System.String id, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest(id);
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.String id)
+        {
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("id", FormatId(id));
+            return CreateRequest(variables);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: GetPositionByIdQueryDocument.Instance.Hash.Value, name: "GetPositionById", document: GetPositionByIdQueryDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatId(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _iDFormatter.Format(value);
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest(variables!);
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the GetPositionById GraphQL operation
+    /// <code>
+    /// query GetPositionById($id: ID!) {
+    ///   Position(positionId: $id) {
+    ///     __typename
+    ///     code
+    ///     name
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetPositionByIdQuery : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetPositionByIdResult>> ExecuteAsync(global::System.String id, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IGetPositionByIdResult>> Watch(global::System.String id, global::StrawberryShake.ExecutionStrategy? strategy = null);
     }
 
     /// <summary>
@@ -3928,10 +5678,13 @@ namespace VectorGraphQL
     /// <summary>
     /// Represents the operation service of the AddPerson GraphQL operation
     /// <code>
-    /// mutation AddPerson($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $positionId: ID!, $username: String!) {
-    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, positionId: $positionId, username: $username) {
+    /// mutation AddPerson($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $username: String!) {
+    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, username: $username) {
     ///     __typename
     ///     personId
+    ///     first
+    ///     last
+    ///     username
     ///   }
     /// }
     /// </code>
@@ -3945,8 +5698,8 @@ namespace VectorGraphQL
 
         public static AddPersonMutationDocument Instance { get; } = new AddPersonMutationDocument();
         public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Mutation;
-        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x41, 0x64, 0x64, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x28, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x6c, 0x61, 0x73, 0x74, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x44, 0x21, 0x2c, 0x20, 0x24, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x61, 0x64, 0x64, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x28, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x3a, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x2c, 0x20, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x3a, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x2c, 0x20, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x3a, 0x20, 0x24, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x2c, 0x20, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x20, 0x24, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x2c, 0x20, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x2c, 0x20, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x24, 0x66, 0x69, 0x72, 0x73, 0x74, 0x2c, 0x20, 0x6c, 0x61, 0x73, 0x74, 0x3a, 0x20, 0x24, 0x6c, 0x61, 0x73, 0x74, 0x2c, 0x20, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x3a, 0x20, 0x24, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x2c, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x2c, 0x20, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x24, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x7d, 0x20, 0x7d};
-        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "e91f27cd9489c500957960d405e9f9bd");
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x41, 0x64, 0x64, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x28, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x6c, 0x61, 0x73, 0x74, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x2c, 0x20, 0x24, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2c, 0x20, 0x24, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x61, 0x64, 0x64, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x28, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x3a, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x31, 0x2c, 0x20, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x3a, 0x20, 0x24, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x32, 0x2c, 0x20, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x3a, 0x20, 0x24, 0x62, 0x65, 0x67, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x2c, 0x20, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x20, 0x24, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x2c, 0x20, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x55, 0x6e, 0x69, 0x71, 0x75, 0x65, 0x49, 0x64, 0x2c, 0x20, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x24, 0x66, 0x69, 0x72, 0x73, 0x74, 0x2c, 0x20, 0x6c, 0x61, 0x73, 0x74, 0x3a, 0x20, 0x24, 0x6c, 0x61, 0x73, 0x74, 0x2c, 0x20, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x3a, 0x20, 0x24, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x2c, 0x20, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x20, 0x24, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x66, 0x69, 0x72, 0x73, 0x74, 0x20, 0x6c, 0x61, 0x73, 0x74, 0x20, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "d10dd11b1126c5062f8d7e246d74989f");
         public override global::System.String ToString()
         {
 #if NETSTANDARD2_0
@@ -3960,10 +5713,13 @@ namespace VectorGraphQL
     /// <summary>
     /// Represents the operation service of the AddPerson GraphQL operation
     /// <code>
-    /// mutation AddPerson($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $positionId: ID!, $username: String!) {
-    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, positionId: $positionId, username: $username) {
+    /// mutation AddPerson($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $username: String!) {
+    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, username: $username) {
     ///     __typename
     ///     personId
+    ///     first
+    ///     last
+    ///     username
     ///   }
     /// }
     /// </code>
@@ -3973,28 +5729,26 @@ namespace VectorGraphQL
     {
         private readonly global::StrawberryShake.IOperationExecutor<IAddPersonResult> _operationExecutor;
         private readonly global::StrawberryShake.Serialization.IInputValueFormatter _stringFormatter;
-        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _iDFormatter;
         public AddPersonMutation(global::StrawberryShake.IOperationExecutor<IAddPersonResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
         {
             _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
             _stringFormatter = serializerResolver.GetInputValueFormatter("String");
-            _iDFormatter = serializerResolver.GetInputValueFormatter("ID");
         }
 
         global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IAddPersonResult);
-        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddPersonResult>> ExecuteAsync(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::System.Threading.CancellationToken cancellationToken = default)
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddPersonResult>> ExecuteAsync(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String username, global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var request = CreateRequest(address1, address2, beginDate, email, externalUniqueId, first, last, phone, positionId, username);
+            var request = CreateRequest(address1, address2, beginDate, email, externalUniqueId, first, last, phone, username);
             return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
-        public global::System.IObservable<global::StrawberryShake.IOperationResult<IAddPersonResult>> Watch(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IAddPersonResult>> Watch(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String username, global::StrawberryShake.ExecutionStrategy? strategy = null)
         {
-            var request = CreateRequest(address1, address2, beginDate, email, externalUniqueId, first, last, phone, positionId, username);
+            var request = CreateRequest(address1, address2, beginDate, email, externalUniqueId, first, last, phone, username);
             return _operationExecutor.Watch(request, strategy);
         }
 
-        private global::StrawberryShake.OperationRequest CreateRequest(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username)
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String username)
         {
             var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
             variables.Add("address1", FormatAddress1(address1));
@@ -4005,7 +5759,6 @@ namespace VectorGraphQL
             variables.Add("first", FormatFirst(first));
             variables.Add("last", FormatLast(last));
             variables.Add("phone", FormatPhone(phone));
-            variables.Add("positionId", FormatPositionId(positionId));
             variables.Add("username", FormatUsername(username));
             return CreateRequest(variables);
         }
@@ -4107,16 +5860,6 @@ namespace VectorGraphQL
             }
         }
 
-        private global::System.Object? FormatPositionId(global::System.String value)
-        {
-            if (value is null)
-            {
-                throw new global::System.ArgumentNullException(nameof(value));
-            }
-
-            return _iDFormatter.Format(value);
-        }
-
         private global::System.Object? FormatUsername(global::System.String value)
         {
             if (value is null)
@@ -4136,10 +5879,13 @@ namespace VectorGraphQL
     /// <summary>
     /// Represents the operation service of the AddPerson GraphQL operation
     /// <code>
-    /// mutation AddPerson($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $positionId: ID!, $username: String!) {
-    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, positionId: $positionId, username: $username) {
+    /// mutation AddPerson($address1: String, $address2: String, $beginDate: String, $email: String, $externalUniqueId: String, $first: String!, $last: String!, $phone: String, $username: String!) {
+    ///   addPerson(address1: $address1, address2: $address2, beginDate: $beginDate, email: $email, externalUniqueId: $externalUniqueId, first: $first, last: $last, phone: $phone, username: $username) {
     ///     __typename
     ///     personId
+    ///     first
+    ///     last
+    ///     username
     ///   }
     /// }
     /// </code>
@@ -4147,8 +5893,8 @@ namespace VectorGraphQL
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial interface IAddPersonMutation : global::StrawberryShake.IOperationRequestFactory
     {
-        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddPersonResult>> ExecuteAsync(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::System.Threading.CancellationToken cancellationToken = default);
-        global::System.IObservable<global::StrawberryShake.IOperationResult<IAddPersonResult>> Watch(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String positionId, global::System.String username, global::StrawberryShake.ExecutionStrategy? strategy = null);
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddPersonResult>> ExecuteAsync(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String username, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IAddPersonResult>> Watch(global::System.String? address1, global::System.String? address2, global::System.String? beginDate, global::System.String? email, global::System.String? externalUniqueId, global::System.String first, global::System.String last, global::System.String? phone, global::System.String username, global::StrawberryShake.ExecutionStrategy? strategy = null);
     }
 
     /// <summary>
@@ -4280,20 +6026,28 @@ namespace VectorGraphQL
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class VectorClient : global::VectorGraphQL.IVectorClient
     {
+        private readonly global::VectorGraphQL.IAddJobMutation _addJob;
+        private readonly global::VectorGraphQL.IAddPersonWithPositionMutation _addPersonWithPosition;
         private readonly global::VectorGraphQL.IDeactivatePersonMutation _deactivatePerson;
         private readonly global::VectorGraphQL.IAddPositionMutation _addPosition;
         private readonly global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressQuery _getFirst100ActivePeopleAndProgress;
+        private readonly global::VectorGraphQL.IGetAllLocationsQuery _getAllLocations;
+        private readonly global::VectorGraphQL.IGetPositionByIdQuery _getPositionById;
         private readonly global::VectorGraphQL.IUpdatePersonMutation _updatePerson;
         private readonly global::VectorGraphQL.IGetPersonByIdQuery _getPersonById;
         private readonly global::VectorGraphQL.IGetCourseByIdQuery _getCourseById;
         private readonly global::VectorGraphQL.IGetAllPositionsQuery _getAllPositions;
         private readonly global::VectorGraphQL.IAddPersonMutation _addPerson;
         private readonly global::VectorGraphQL.IGetFirst100PeopleQuery _getFirst100People;
-        public VectorClient(global::VectorGraphQL.IDeactivatePersonMutation deactivatePerson, global::VectorGraphQL.IAddPositionMutation addPosition, global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressQuery getFirst100ActivePeopleAndProgress, global::VectorGraphQL.IUpdatePersonMutation updatePerson, global::VectorGraphQL.IGetPersonByIdQuery getPersonById, global::VectorGraphQL.IGetCourseByIdQuery getCourseById, global::VectorGraphQL.IGetAllPositionsQuery getAllPositions, global::VectorGraphQL.IAddPersonMutation addPerson, global::VectorGraphQL.IGetFirst100PeopleQuery getFirst100People)
+        public VectorClient(global::VectorGraphQL.IAddJobMutation addJob, global::VectorGraphQL.IAddPersonWithPositionMutation addPersonWithPosition, global::VectorGraphQL.IDeactivatePersonMutation deactivatePerson, global::VectorGraphQL.IAddPositionMutation addPosition, global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressQuery getFirst100ActivePeopleAndProgress, global::VectorGraphQL.IGetAllLocationsQuery getAllLocations, global::VectorGraphQL.IGetPositionByIdQuery getPositionById, global::VectorGraphQL.IUpdatePersonMutation updatePerson, global::VectorGraphQL.IGetPersonByIdQuery getPersonById, global::VectorGraphQL.IGetCourseByIdQuery getCourseById, global::VectorGraphQL.IGetAllPositionsQuery getAllPositions, global::VectorGraphQL.IAddPersonMutation addPerson, global::VectorGraphQL.IGetFirst100PeopleQuery getFirst100People)
         {
+            _addJob = addJob ?? throw new global::System.ArgumentNullException(nameof(addJob));
+            _addPersonWithPosition = addPersonWithPosition ?? throw new global::System.ArgumentNullException(nameof(addPersonWithPosition));
             _deactivatePerson = deactivatePerson ?? throw new global::System.ArgumentNullException(nameof(deactivatePerson));
             _addPosition = addPosition ?? throw new global::System.ArgumentNullException(nameof(addPosition));
             _getFirst100ActivePeopleAndProgress = getFirst100ActivePeopleAndProgress ?? throw new global::System.ArgumentNullException(nameof(getFirst100ActivePeopleAndProgress));
+            _getAllLocations = getAllLocations ?? throw new global::System.ArgumentNullException(nameof(getAllLocations));
+            _getPositionById = getPositionById ?? throw new global::System.ArgumentNullException(nameof(getPositionById));
             _updatePerson = updatePerson ?? throw new global::System.ArgumentNullException(nameof(updatePerson));
             _getPersonById = getPersonById ?? throw new global::System.ArgumentNullException(nameof(getPersonById));
             _getCourseById = getCourseById ?? throw new global::System.ArgumentNullException(nameof(getCourseById));
@@ -4303,9 +6057,13 @@ namespace VectorGraphQL
         }
 
         public static global::System.String ClientName => "VectorClient";
+        public global::VectorGraphQL.IAddJobMutation AddJob => _addJob;
+        public global::VectorGraphQL.IAddPersonWithPositionMutation AddPersonWithPosition => _addPersonWithPosition;
         public global::VectorGraphQL.IDeactivatePersonMutation DeactivatePerson => _deactivatePerson;
         public global::VectorGraphQL.IAddPositionMutation AddPosition => _addPosition;
         public global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressQuery GetFirst100ActivePeopleAndProgress => _getFirst100ActivePeopleAndProgress;
+        public global::VectorGraphQL.IGetAllLocationsQuery GetAllLocations => _getAllLocations;
+        public global::VectorGraphQL.IGetPositionByIdQuery GetPositionById => _getPositionById;
         public global::VectorGraphQL.IUpdatePersonMutation UpdatePerson => _updatePerson;
         public global::VectorGraphQL.IGetPersonByIdQuery GetPersonById => _getPersonById;
         public global::VectorGraphQL.IGetCourseByIdQuery GetCourseById => _getCourseById;
@@ -4320,11 +6078,19 @@ namespace VectorGraphQL
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial interface IVectorClient
     {
+        global::VectorGraphQL.IAddJobMutation AddJob { get; }
+
+        global::VectorGraphQL.IAddPersonWithPositionMutation AddPersonWithPosition { get; }
+
         global::VectorGraphQL.IDeactivatePersonMutation DeactivatePerson { get; }
 
         global::VectorGraphQL.IAddPositionMutation AddPosition { get; }
 
         global::VectorGraphQL.IGetFirst100ActivePeopleAndProgressQuery GetFirst100ActivePeopleAndProgress { get; }
+
+        global::VectorGraphQL.IGetAllLocationsQuery GetAllLocations { get; }
+
+        global::VectorGraphQL.IGetPositionByIdQuery GetPositionById { get; }
 
         global::VectorGraphQL.IUpdatePersonMutation UpdatePerson { get; }
 
@@ -4342,6 +6108,172 @@ namespace VectorGraphQL
 
 namespace VectorGraphQL.State
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJobResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.AddJobResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public AddJobResultFactory(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::VectorGraphQL.IAddJobResult);
+        public AddJobResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is AddJobResultInfo info)
+            {
+                return new AddJobResult(MapIAddJob_Person(info.Person, snapshot));
+            }
+
+            throw new global::System.ArgumentException("AddJobResultInfo expected.");
+        }
+
+        private global::VectorGraphQL.IAddJob_Person? MapIAddJob_Person(global::VectorGraphQL.State.PersonMutationData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IAddJob_Person returnValue = default !;
+            if (data?.__typename.Equals("PersonMutation", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new AddJob_Person_PersonMutation(MapIAddJob_Person_AddJob(data.AddJob, snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::VectorGraphQL.IAddJob_Person_AddJob? MapIAddJob_Person_AddJob(global::VectorGraphQL.State.JobData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IAddJob_Person_AddJob returnValue = default !;
+            if (data?.__typename.Equals("Job", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new AddJob_Person_AddJob_Job(data.JobId ?? throw new global::System.ArgumentNullException(), data.Title);
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJobResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public AddJobResultInfo(global::VectorGraphQL.State.PersonMutationData? person, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            Person = person;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::VectorGraphQL.State.PersonMutationData? Person { get; }
+
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new AddJobResultInfo(Person, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddPersonWithPositionResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.AddPersonWithPositionResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public AddPersonWithPositionResultFactory(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::VectorGraphQL.IAddPersonWithPositionResult);
+        public AddPersonWithPositionResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is AddPersonWithPositionResultInfo info)
+            {
+                return new AddPersonWithPositionResult(MapIAddPersonWithPosition_AddPerson(info.AddPerson, snapshot));
+            }
+
+            throw new global::System.ArgumentException("AddPersonWithPositionResultInfo expected.");
+        }
+
+        private global::VectorGraphQL.IAddPersonWithPosition_AddPerson? MapIAddPersonWithPosition_AddPerson(global::VectorGraphQL.State.PersonData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IAddPersonWithPosition_AddPerson returnValue = default !;
+            if (data?.__typename.Equals("Person", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new AddPersonWithPosition_AddPerson_Person(data.PersonId ?? throw new global::System.ArgumentNullException(), data.First, data.Last, data.Username);
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddPersonWithPositionResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public AddPersonWithPositionResultInfo(global::VectorGraphQL.State.PersonData? addPerson, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            AddPerson = addPerson;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::VectorGraphQL.State.PersonData? AddPerson { get; }
+
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new AddPersonWithPositionResultInfo(AddPerson, _entityIds, version);
+        }
+    }
+
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class DeactivatePersonResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.DeactivatePersonResult>
     {
@@ -4470,7 +6402,7 @@ namespace VectorGraphQL.State
             IAddPosition_AddPosition returnValue = default !;
             if (data?.__typename.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
             {
-                returnValue = new AddPosition_AddPosition_Position(data.PositionId ?? throw new global::System.ArgumentNullException());
+                returnValue = new AddPosition_AddPosition_Position(data.PositionId ?? throw new global::System.ArgumentNullException(), data.Name);
             }
             else
             {
@@ -4751,6 +6683,244 @@ namespace VectorGraphQL.State
         public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
         {
             return new GetFirst100ActivePeopleAndProgressResultInfo(People, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocationsResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.GetAllLocationsResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public GetAllLocationsResultFactory(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::VectorGraphQL.IGetAllLocationsResult);
+        public GetAllLocationsResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is GetAllLocationsResultInfo info)
+            {
+                return new GetAllLocationsResult(MapIGetAllLocations_Locations(info.Locations, snapshot));
+            }
+
+            throw new global::System.ArgumentException("GetAllLocationsResultInfo expected.");
+        }
+
+        private global::VectorGraphQL.IGetAllLocations_Locations? MapIGetAllLocations_Locations(global::VectorGraphQL.State.PagedLocationData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetAllLocations_Locations returnValue = default !;
+            if (data?.__typename.Equals("PagedLocation", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new GetAllLocations_Locations_PagedLocation(MapIGetAllLocations_Locations_NodesArray(data.Nodes, snapshot), MapIGetAllLocations_Locations_PageInfo(data.PageInfo, snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes?>? MapIGetAllLocations_Locations_NodesArray(global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (list is null)
+            {
+                return null;
+            }
+
+            var locations = new global::System.Collections.Generic.List<global::VectorGraphQL.IGetAllLocations_Locations_Nodes?>();
+            foreach (global::VectorGraphQL.State.LocationData? child in list)
+            {
+                locations.Add(MapIGetAllLocations_Locations_Nodes(child, snapshot));
+            }
+
+            return locations;
+        }
+
+        private global::VectorGraphQL.IGetAllLocations_Locations_Nodes? MapIGetAllLocations_Locations_Nodes(global::VectorGraphQL.State.LocationData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetAllLocations_Locations_Nodes returnValue = default !;
+            if (data?.__typename.Equals("Location", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new GetAllLocations_Locations_Nodes_Location(data.LocationId ?? throw new global::System.ArgumentNullException(), data.Name, data.Code, MapIGetAllLocations_Locations_Nodes_ChildrenArray(data.Children, snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllLocations_Locations_Nodes_Children?>? MapIGetAllLocations_Locations_Nodes_ChildrenArray(global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (list is null)
+            {
+                return null;
+            }
+
+            var locations = new global::System.Collections.Generic.List<global::VectorGraphQL.IGetAllLocations_Locations_Nodes_Children?>();
+            foreach (global::VectorGraphQL.State.LocationData? child in list)
+            {
+                locations.Add(MapIGetAllLocations_Locations_Nodes_Children(child, snapshot));
+            }
+
+            return locations;
+        }
+
+        private global::VectorGraphQL.IGetAllLocations_Locations_Nodes_Children? MapIGetAllLocations_Locations_Nodes_Children(global::VectorGraphQL.State.LocationData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetAllLocations_Locations_Nodes_Children returnValue = default !;
+            if (data?.__typename.Equals("Location", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new GetAllLocations_Locations_Nodes_Children_Location(data.Name);
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::VectorGraphQL.IGetAllLocations_Locations_PageInfo? MapIGetAllLocations_Locations_PageInfo(global::VectorGraphQL.State.PageInfoData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetAllLocations_Locations_PageInfo returnValue = default !;
+            if (data?.__typename.Equals("PageInfo", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new GetAllLocations_Locations_PageInfo_PageInfo(data.Count, data.TotalCount, data.StartCursor, data.EndCursor, data.HasNextPage ?? throw new global::System.ArgumentNullException(), data.HasPreviousPage ?? throw new global::System.ArgumentNullException());
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocationsResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public GetAllLocationsResultInfo(global::VectorGraphQL.State.PagedLocationData? locations, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            Locations = locations;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::VectorGraphQL.State.PagedLocationData? Locations { get; }
+
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new GetAllLocationsResultInfo(Locations, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetPositionByIdResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.GetPositionByIdResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public GetPositionByIdResultFactory(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::VectorGraphQL.IGetPositionByIdResult);
+        public GetPositionByIdResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is GetPositionByIdResultInfo info)
+            {
+                return new GetPositionByIdResult(MapIGetPositionById_Position(info.Position, snapshot));
+            }
+
+            throw new global::System.ArgumentException("GetPositionByIdResultInfo expected.");
+        }
+
+        private global::VectorGraphQL.IGetPositionById_Position? MapIGetPositionById_Position(global::VectorGraphQL.State.PositionData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetPositionById_Position returnValue = default !;
+            if (data?.__typename.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new GetPositionById_Position_Position(data.Code, data.Name);
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetPositionByIdResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public GetPositionByIdResultInfo(global::VectorGraphQL.State.PositionData? position, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            Position = position;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::VectorGraphQL.State.PositionData? Position { get; }
+
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new GetPositionByIdResultInfo(Position, _entityIds, version);
         }
     }
 
@@ -5157,7 +7327,7 @@ namespace VectorGraphQL.State
             IAddPerson_AddPerson returnValue = default !;
             if (data?.__typename.Equals("Person", global::System.StringComparison.Ordinal) ?? false)
             {
-                returnValue = new AddPerson_AddPerson_Person(data.PersonId ?? throw new global::System.ArgumentNullException());
+                returnValue = new AddPerson_AddPerson_Person(data.PersonId ?? throw new global::System.ArgumentNullException(), data.First, data.Last, data.Username);
             }
             else
             {
@@ -5301,6 +7471,236 @@ namespace VectorGraphQL.State
         public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
         {
             return new GetFirst100PeopleResultInfo(People, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddJobBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddJobResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddJobResult> _resultDataFactory;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _iDParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        public AddJobBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddJobResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _iDParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("ID") ?? throw new global::System.ArgumentException("No serializer for type `ID` found.");
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+        }
+
+        public global::StrawberryShake.IOperationResult<IAddJobResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        {
+            (IAddJobResult Result, AddJobResultInfo Info)? data = null;
+            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
+            if (response.Exception is null)
+            {
+                try
+                {
+                    if (response.Body != null)
+                    {
+                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                        {
+                            data = BuildData(dataElement);
+                        }
+
+                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                        {
+                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                        }
+                    }
+                }
+                catch (global::System.Exception ex)
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+            else
+            {
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+
+            return new global::StrawberryShake.OperationResult<IAddJobResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+        }
+
+        private (IAddJobResult, AddJobResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            _entityStore.Update(session =>
+            {
+                snapshot = session.CurrentSnapshot;
+            });
+            var resultInfo = new AddJobResultInfo(DeserializeIAddJob_Person(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "Person")), entityIds, snapshot.Version);
+            return (_resultDataFactory.Create(resultInfo), resultInfo);
+        }
+
+        private global::VectorGraphQL.State.PersonMutationData? DeserializeIAddJob_Person(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("PersonMutation", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.PersonMutationData(typename, addJob: DeserializeIAddJob_Person_AddJob(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "addJob")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::VectorGraphQL.State.JobData? DeserializeIAddJob_Person_AddJob(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("Job", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.JobData(typename, jobId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "jobId")), title: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "title")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.String DeserializeNonNullableString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _iDParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class AddPersonWithPositionBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IAddPersonWithPositionResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddPersonWithPositionResult> _resultDataFactory;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _iDParser;
+        public AddPersonWithPositionBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IAddPersonWithPositionResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+            _iDParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("ID") ?? throw new global::System.ArgumentException("No serializer for type `ID` found.");
+        }
+
+        public global::StrawberryShake.IOperationResult<IAddPersonWithPositionResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        {
+            (IAddPersonWithPositionResult Result, AddPersonWithPositionResultInfo Info)? data = null;
+            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
+            if (response.Exception is null)
+            {
+                try
+                {
+                    if (response.Body != null)
+                    {
+                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                        {
+                            data = BuildData(dataElement);
+                        }
+
+                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                        {
+                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                        }
+                    }
+                }
+                catch (global::System.Exception ex)
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+            else
+            {
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+
+            return new global::StrawberryShake.OperationResult<IAddPersonWithPositionResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+        }
+
+        private (IAddPersonWithPositionResult, AddPersonWithPositionResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            _entityStore.Update(session =>
+            {
+                snapshot = session.CurrentSnapshot;
+            });
+            var resultInfo = new AddPersonWithPositionResultInfo(DeserializeIAddPersonWithPosition_AddPerson(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "addPerson")), entityIds, snapshot.Version);
+            return (_resultDataFactory.Create(resultInfo), resultInfo);
+        }
+
+        private global::VectorGraphQL.State.PersonData? DeserializeIAddPersonWithPosition_AddPerson(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("Person", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.PersonData(typename, personId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "personId")), first: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "first")), last: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "last")), username: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "username")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.String DeserializeNonNullableString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _iDParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
         }
     }
 
@@ -5495,7 +7895,7 @@ namespace VectorGraphQL.State
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
             {
-                return new global::VectorGraphQL.State.PositionData(typename, positionId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "positionId")));
+                return new global::VectorGraphQL.State.PositionData(typename, positionId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "positionId")), name: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
             }
 
             throw new global::System.NotSupportedException();
@@ -5509,6 +7909,16 @@ namespace VectorGraphQL.State
             }
 
             return _iDParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
         }
     }
 
@@ -5846,6 +8256,314 @@ namespace VectorGraphQL.State
             }
 
             return _booleanParser.Parse(obj.Value.GetBoolean()!);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllLocationsBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetAllLocationsResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetAllLocationsResult> _resultDataFactory;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _iDParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Boolean, global::System.Boolean> _booleanParser;
+        public GetAllLocationsBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetAllLocationsResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _iDParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("ID") ?? throw new global::System.ArgumentException("No serializer for type `ID` found.");
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
+            _booleanParser = serializerResolver.GetLeafValueParser<global::System.Boolean, global::System.Boolean>("Boolean") ?? throw new global::System.ArgumentException("No serializer for type `Boolean` found.");
+        }
+
+        public global::StrawberryShake.IOperationResult<IGetAllLocationsResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        {
+            (IGetAllLocationsResult Result, GetAllLocationsResultInfo Info)? data = null;
+            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
+            if (response.Exception is null)
+            {
+                try
+                {
+                    if (response.Body != null)
+                    {
+                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                        {
+                            data = BuildData(dataElement);
+                        }
+
+                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                        {
+                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                        }
+                    }
+                }
+                catch (global::System.Exception ex)
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+            else
+            {
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+
+            return new global::StrawberryShake.OperationResult<IGetAllLocationsResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+        }
+
+        private (IGetAllLocationsResult, GetAllLocationsResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            _entityStore.Update(session =>
+            {
+                snapshot = session.CurrentSnapshot;
+            });
+            var resultInfo = new GetAllLocationsResultInfo(DeserializeIGetAllLocations_Locations(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "Locations")), entityIds, snapshot.Version);
+            return (_resultDataFactory.Create(resultInfo), resultInfo);
+        }
+
+        private global::VectorGraphQL.State.PagedLocationData? DeserializeIGetAllLocations_Locations(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("PagedLocation", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.PagedLocationData(typename, nodes: DeserializeIGetAllLocations_Locations_NodesArray(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "nodes")), pageInfo: DeserializeIGetAllLocations_Locations_PageInfo(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pageInfo")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? DeserializeIGetAllLocations_Locations_NodesArray(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var locations = new global::System.Collections.Generic.List<global::VectorGraphQL.State.LocationData?>();
+            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
+            {
+                locations.Add(DeserializeIGetAllLocations_Locations_Nodes(child));
+            }
+
+            return locations;
+        }
+
+        private global::VectorGraphQL.State.LocationData? DeserializeIGetAllLocations_Locations_Nodes(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("Location", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.LocationData(typename, locationId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "locationId")), name: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")), code: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "code")), children: DeserializeIGetAllLocations_Locations_Nodes_ChildrenArray(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "children")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.String DeserializeNonNullableString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _iDParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? DeserializeIGetAllLocations_Locations_Nodes_ChildrenArray(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var locations = new global::System.Collections.Generic.List<global::VectorGraphQL.State.LocationData?>();
+            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
+            {
+                locations.Add(DeserializeIGetAllLocations_Locations_Nodes_Children(child));
+            }
+
+            return locations;
+        }
+
+        private global::VectorGraphQL.State.LocationData? DeserializeIGetAllLocations_Locations_Nodes_Children(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("Location", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.LocationData(typename, name: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::VectorGraphQL.State.PageInfoData? DeserializeIGetAllLocations_Locations_PageInfo(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("PageInfo", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.PageInfoData(typename, count: DeserializeInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "count")), totalCount: DeserializeInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "totalCount")), startCursor: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "startCursor")), endCursor: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "endCursor")), hasNextPage: DeserializeNonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "hasNextPage")), hasPreviousPage: DeserializeNonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "hasPreviousPage")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Int32? DeserializeInt32(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _intParser.Parse(obj.Value.GetInt32()!);
+        }
+
+        private global::System.Boolean DeserializeNonNullableBoolean(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _booleanParser.Parse(obj.Value.GetBoolean()!);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetPositionByIdBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::VectorGraphQL.IGetPositionByIdResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetPositionByIdResult> _resultDataFactory;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _iDParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        public GetPositionByIdBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::VectorGraphQL.IGetPositionByIdResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _iDParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("ID") ?? throw new global::System.ArgumentException("No serializer for type `ID` found.");
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+        }
+
+        public global::StrawberryShake.IOperationResult<IGetPositionByIdResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        {
+            (IGetPositionByIdResult Result, GetPositionByIdResultInfo Info)? data = null;
+            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
+            if (response.Exception is null)
+            {
+                try
+                {
+                    if (response.Body != null)
+                    {
+                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                        {
+                            data = BuildData(dataElement);
+                        }
+
+                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                        {
+                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                        }
+                    }
+                }
+                catch (global::System.Exception ex)
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+            else
+            {
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+
+            return new global::StrawberryShake.OperationResult<IGetPositionByIdResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+        }
+
+        private (IGetPositionByIdResult, GetPositionByIdResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            _entityStore.Update(session =>
+            {
+                snapshot = session.CurrentSnapshot;
+            });
+            var resultInfo = new GetPositionByIdResultInfo(DeserializeIGetPositionById_Position(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "Position")), entityIds, snapshot.Version);
+            return (_resultDataFactory.Create(resultInfo), resultInfo);
+        }
+
+        private global::VectorGraphQL.State.PositionData? DeserializeIGetPositionById_Position(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.PositionData(typename, code: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "code")), name: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
         }
     }
 
@@ -6445,7 +9163,7 @@ namespace VectorGraphQL.State
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("Person", global::System.StringComparison.Ordinal) ?? false)
             {
-                return new global::VectorGraphQL.State.PersonData(typename, personId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "personId")));
+                return new global::VectorGraphQL.State.PersonData(typename, personId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "personId")), first: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "first")), last: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "last")), username: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "username")));
             }
 
             throw new global::System.NotSupportedException();
@@ -6459,6 +9177,16 @@ namespace VectorGraphQL.State
             }
 
             return _iDParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
         }
     }
 
@@ -6604,18 +9332,50 @@ namespace VectorGraphQL.State
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class PersonMutationData
     {
-        public PersonMutationData(global::System.String __typename, global::VectorGraphQL.State.PersonData? deactivate = default !, global::VectorGraphQL.State.PersonData? update = default !)
+        public PersonMutationData(global::System.String __typename, global::VectorGraphQL.State.JobData? addJob = default !, global::VectorGraphQL.State.PersonData? deactivate = default !, global::VectorGraphQL.State.PersonData? update = default !)
         {
             this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
+            AddJob = addJob;
             Deactivate = deactivate;
             Update = update;
         }
 
         public global::System.String __typename { get; }
 
+        public global::VectorGraphQL.State.JobData? AddJob { get; }
+
         public global::VectorGraphQL.State.PersonData? Deactivate { get; }
 
         public global::VectorGraphQL.State.PersonData? Update { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class JobData
+    {
+        public JobData(global::System.String __typename, global::System.String? jobId = default !, global::System.String? title = default !, global::System.DateTime? beginDate = default !, global::System.DateTime? endDate = default !, global::VectorGraphQL.State.LocationData? location = default !, global::VectorGraphQL.State.PositionData? position = default !)
+        {
+            this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
+            JobId = jobId;
+            Title = title;
+            BeginDate = beginDate;
+            EndDate = endDate;
+            Location = location;
+            Position = position;
+        }
+
+        public global::System.String __typename { get; }
+
+        public global::System.String? JobId { get; }
+
+        public global::System.String? Title { get; }
+
+        public global::System.DateTime? BeginDate { get; }
+
+        public global::System.DateTime? EndDate { get; }
+
+        public global::VectorGraphQL.State.LocationData? Location { get; }
+
+        public global::VectorGraphQL.State.PositionData? Position { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
@@ -6755,35 +9515,6 @@ namespace VectorGraphQL.State
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
-    public partial class JobData
-    {
-        public JobData(global::System.String __typename, global::System.String? jobId = default !, global::System.DateTime? beginDate = default !, global::System.DateTime? endDate = default !, global::System.String? title = default !, global::VectorGraphQL.State.LocationData? location = default !, global::VectorGraphQL.State.PositionData? position = default !)
-        {
-            this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
-            JobId = jobId;
-            BeginDate = beginDate;
-            EndDate = endDate;
-            Title = title;
-            Location = location;
-            Position = position;
-        }
-
-        public global::System.String __typename { get; }
-
-        public global::System.String? JobId { get; }
-
-        public global::System.DateTime? BeginDate { get; }
-
-        public global::System.DateTime? EndDate { get; }
-
-        public global::System.String? Title { get; }
-
-        public global::VectorGraphQL.State.LocationData? Location { get; }
-
-        public global::VectorGraphQL.State.PositionData? Position { get; }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class CourseInfoData
     {
         public CourseInfoData(global::System.String __typename, global::System.String? title = default !, global::System.String? courseInfoId = default !)
@@ -6803,15 +9534,41 @@ namespace VectorGraphQL.State
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class LocationData
     {
-        public LocationData(global::System.String __typename, global::System.String? name = default !)
+        public LocationData(global::System.String __typename, global::System.String? name = default !, global::System.String? locationId = default !, global::System.String? code = default !, global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? children = default !)
         {
             this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
             Name = name;
+            LocationId = locationId;
+            Code = code;
+            Children = children;
         }
 
         public global::System.String __typename { get; }
 
         public global::System.String? Name { get; }
+
+        public global::System.String? LocationId { get; }
+
+        public global::System.String? Code { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? Children { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class PagedLocationData
+    {
+        public PagedLocationData(global::System.String __typename, global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? nodes = default !, global::VectorGraphQL.State.PageInfoData? pageInfo = default !)
+        {
+            this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
+            Nodes = nodes;
+            PageInfo = pageInfo;
+        }
+
+        public global::System.String __typename { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.LocationData?>? Nodes { get; }
+
+        public global::VectorGraphQL.State.PageInfoData? PageInfo { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]

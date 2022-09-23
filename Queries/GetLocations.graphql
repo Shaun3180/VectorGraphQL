@@ -1,0 +1,19 @@
+﻿query GetAllLocations
+   { Locations  (first: 100 )
+    { nodes
+      { locationId 
+        name  
+        code 
+        children {
+            name} 
+      }
+      pageInfo {
+           count
+           totalCount
+           startCursor
+           endCursor
+           hasNextPage
+           hasPreviousPage
+       }
+    }
+}

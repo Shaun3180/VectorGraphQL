@@ -80,12 +80,11 @@ internal class Vector
         return result.Data.Person;
     }
 
-    public async Task<IAddPerson_AddPerson> AddUser(Person person)
+    public async Task<IAddPerson_AddPerson> AddPerson(Person person)
     {
         IOperationResult<IAddPersonResult> result;
 
-        if (person.PositionId == Guid.Empty)
-            result = await _client.AddPerson.ExecuteAsync(person.Address1,
+        result = await _client.AddPerson.ExecuteAsync(person.Address1,
             person.Address2,
             person.BeginDate,
             person.Email,
@@ -93,11 +92,19 @@ internal class Vector
             person.FirstName,
             person.LastName,
             person.Phone,
-            null,
             person.UserName
-            );
-        else
-            result = await _client.AddPerson.ExecuteAsync(person.Address1,
+            );      
+
+        result.EnsureNoErrors();
+
+        return result.Data.AddPerson;
+    }
+
+    public async Task<IAddPersonWithPosition_AddPerson> AddPersonWithPosition(Person person)
+    {
+        IOperationResult<IAddPersonWithPositionResult> result;
+
+            result = await _client.AddPersonWithPosition.ExecuteAsync(person.Address1,
             person.Address2,
             person.BeginDate,
             person.Email,
@@ -137,6 +144,17 @@ internal class Vector
         return result.Data.Person;
     }
 
+    public async Task<IAddJob_Person> AddJobToPerson(Guid personId, Guid locationId, Guid positionId)
+    {
+        IOperationResult<IAddJobResult> result = await _client.AddJob.ExecuteAsync(personId.ToString().ToUpper(), 
+            locationId.ToString().ToUpper(),
+            positionId.ToString().ToUpper()
+            );
+        result.EnsureNoErrors();
+
+        return result.Data.Person;
+    }
+
     #endregion
 
     #region "Position-Related Methods"
@@ -163,6 +181,17 @@ internal class Vector
     }
     #endregion
 
+    #region "Location-Related Methods"
+
+    public async Task<IReadOnlyList<IGetAllLocations_Locations_Nodes>> GetAllLocations()
+    {
+        IOperationResult<IGetAllLocationsResult> result = await _client.GetAllLocations.ExecuteAsync();
+        result.EnsureNoErrors();
+
+        return result.Data.Locations.Nodes;
+    }
+
+    #endregion
 }
 
 public class Person

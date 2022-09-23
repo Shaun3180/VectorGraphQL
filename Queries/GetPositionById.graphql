@@ -1,0 +1,6 @@
+﻿query GetPositionById($id: ID!) {
+  Position(positionId: $id) {
+    code
+    name
+  }
+}
