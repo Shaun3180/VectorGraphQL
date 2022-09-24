@@ -10,13 +10,9 @@ More examples to come, but for now, please see Program.cs for use cases for the 
 
 ![Example Output After Running Program.cs](https://github.com/Shaun3180/VectorGraphQL/blob/master/example-output.png)
 
-## Issues (w/ Vector's API)
+## Issues
 
- - It doesn't seem possible to unassign a position from a person.  The best you can do as far as I can tell is specify an enddate for the position
- - Along the same lines, there is no way to update a position or location via Vector's API for a person (e.g., if a student were originally on-campus, but then became an online student, I don't know how to directly change their position/job)
  - I see no way of programmatically activating a user (after they are deactivated)
- - I see no way of getting a user by their external id or username, which is pretty limiting
- 
 
 ## GraphQL Schema
 

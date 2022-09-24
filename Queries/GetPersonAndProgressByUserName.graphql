@@ -1,4 +1,4 @@
-﻿query GetPersonAndProgressByUserName($username: String) {
+﻿query GetPersonAndProgressByUserName($username: String!) {
  People (username: $username )
     { nodes
        { first 

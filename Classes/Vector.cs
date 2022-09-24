@@ -3,7 +3,6 @@ using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using StrawberryShake;
-using VectorClasses;
 using VectorGraphQL;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 

@@ -1,9 +1,11 @@
 ﻿query GetAllPositions
-   { Positions
+   { Positions (first: 200)
     { nodes
       { positionId 
         name 
         code 
+        children {
+            name}
       }
       pageInfo {
            count

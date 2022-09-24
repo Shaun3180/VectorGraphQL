@@ -4183,11 +4183,12 @@ namespace VectorGraphQL
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class GetAllPositions_Positions_Nodes_Position : global::System.IEquatable<GetAllPositions_Positions_Nodes_Position>, IGetAllPositions_Positions_Nodes_Position
     {
-        public GetAllPositions_Positions_Nodes_Position(global::System.String positionId, global::System.String? name, global::System.String? code)
+        public GetAllPositions_Positions_Nodes_Position(global::System.String positionId, global::System.String? name, global::System.String? code, global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllPositions_Positions_Nodes_Children?>? children)
         {
             PositionId = positionId;
             Name = name;
             Code = code;
+            Children = children;
         }
 
         public global::System.String PositionId { get; }
@@ -4195,6 +4196,8 @@ namespace VectorGraphQL
         public global::System.String? Name { get; }
 
         public global::System.String? Code { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllPositions_Positions_Nodes_Children?>? Children { get; }
 
         public virtual global::System.Boolean Equals(GetAllPositions_Positions_Nodes_Position? other)
         {
@@ -4213,7 +4216,7 @@ namespace VectorGraphQL
                 return false;
             }
 
-            return (PositionId.Equals(other.PositionId)) && ((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name)) && ((Code is null && other.Code is null) || Code != null && Code.Equals(other.Code));
+            return (PositionId.Equals(other.PositionId)) && ((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name)) && ((Code is null && other.Code is null) || Code != null && Code.Equals(other.Code)) && global::StrawberryShake.Helper.ComparisonHelper.SequenceEqual(Children, other.Children);
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -4250,6 +4253,17 @@ namespace VectorGraphQL
                 if (Code != null)
                 {
                     hash ^= 397 * Code.GetHashCode();
+                }
+
+                if (Children != null)
+                {
+                    foreach (var Children_elm in Children)
+                    {
+                        if (Children_elm != null)
+                        {
+                            hash ^= 397 * Children_elm.GetHashCode();
+                        }
+                    }
                 }
 
                 return hash;
@@ -4355,6 +4369,71 @@ namespace VectorGraphQL
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial class GetAllPositions_Positions_Nodes_Children_Position : global::System.IEquatable<GetAllPositions_Positions_Nodes_Children_Position>, IGetAllPositions_Positions_Nodes_Children_Position
+    {
+        public GetAllPositions_Positions_Nodes_Children_Position(global::System.String? name)
+        {
+            Name = name;
+        }
+
+        public global::System.String? Name { get; }
+
+        public virtual global::System.Boolean Equals(GetAllPositions_Positions_Nodes_Children_Position? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetAllPositions_Positions_Nodes_Children_Position)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Name != null)
+                {
+                    hash ^= 397 * Name.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial interface IGetAllPositionsResult
     {
         public global::VectorGraphQL.IGetAllPositions_Positions? Positions { get; }
@@ -4381,6 +4460,8 @@ namespace VectorGraphQL
         public global::System.String? Name { get; }
 
         public global::System.String? Code { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllPositions_Positions_Nodes_Children?>? Children { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
@@ -4406,6 +4487,17 @@ namespace VectorGraphQL
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial interface IGetAllPositions_Positions_PageInfo_PageInfo : IGetAllPositions_Positions_PageInfo
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllPositions_Positions_Nodes_Children
+    {
+        public global::System.String? Name { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
+    public partial interface IGetAllPositions_Positions_Nodes_Children_Position : IGetAllPositions_Positions_Nodes_Children
     {
     }
 
@@ -6856,13 +6948,17 @@ namespace VectorGraphQL
     /// Represents the operation service of the GetAllPositions GraphQL operation
     /// <code>
     /// query GetAllPositions {
-    ///   Positions {
+    ///   Positions(first: 200) {
     ///     __typename
     ///     nodes {
     ///       __typename
     ///       positionId
     ///       name
     ///       code
+    ///       children {
+    ///         __typename
+    ///         name
+    ///       }
     ///     }
     ///     pageInfo {
     ///       __typename
@@ -6886,8 +6982,8 @@ namespace VectorGraphQL
 
         public static GetAllPositionsQueryDocument Instance { get; } = new GetAllPositionsQueryDocument();
         public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
-        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x20, 0x7b, 0x20, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6e, 0x6f, 0x64, 0x65, 0x73, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x6f, 0x64, 0x65, 0x20, 0x7d, 0x20, 0x70, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x20, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x65, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x68, 0x61, 0x73, 0x4e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x20, 0x68, 0x61, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x50, 0x61, 0x67, 0x65, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
-        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "366c4086af2cbbb4b73485608d1db55f");
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x20, 0x7b, 0x20, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x28, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x32, 0x30, 0x30, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6e, 0x6f, 0x64, 0x65, 0x73, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x6f, 0x64, 0x65, 0x20, 0x63, 0x68, 0x69, 0x6c, 0x64, 0x72, 0x65, 0x6e, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x70, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x20, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x65, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x68, 0x61, 0x73, 0x4e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x20, 0x68, 0x61, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x50, 0x61, 0x67, 0x65, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "1d6fd334f38692c85102804e401e0c27");
         public override global::System.String ToString()
         {
 #if NETSTANDARD2_0
@@ -6902,13 +6998,17 @@ namespace VectorGraphQL
     /// Represents the operation service of the GetAllPositions GraphQL operation
     /// <code>
     /// query GetAllPositions {
-    ///   Positions {
+    ///   Positions(first: 200) {
     ///     __typename
     ///     nodes {
     ///       __typename
     ///       positionId
     ///       name
     ///       code
+    ///       children {
+    ///         __typename
+    ///         name
+    ///       }
     ///     }
     ///     pageInfo {
     ///       __typename
@@ -6965,13 +7065,17 @@ namespace VectorGraphQL
     /// Represents the operation service of the GetAllPositions GraphQL operation
     /// <code>
     /// query GetAllPositions {
-    ///   Positions {
+    ///   Positions(first: 200) {
     ///     __typename
     ///     nodes {
     ///       __typename
     ///       positionId
     ///       name
     ///       code
+    ///       children {
+    ///         __typename
+    ///         name
+    ///       }
     ///     }
     ///     pageInfo {
     ///       __typename
@@ -8861,7 +8965,43 @@ namespace VectorGraphQL.State
             IGetAllPositions_Positions_Nodes returnValue = default !;
             if (data?.__typename.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
             {
-                returnValue = new GetAllPositions_Positions_Nodes_Position(data.PositionId ?? throw new global::System.ArgumentNullException(), data.Name, data.Code);
+                returnValue = new GetAllPositions_Positions_Nodes_Position(data.PositionId ?? throw new global::System.ArgumentNullException(), data.Name, data.Code, MapIGetAllPositions_Positions_Nodes_ChildrenArray(data.Children, snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.IGetAllPositions_Positions_Nodes_Children?>? MapIGetAllPositions_Positions_Nodes_ChildrenArray(global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.PositionData?>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (list is null)
+            {
+                return null;
+            }
+
+            var positions = new global::System.Collections.Generic.List<global::VectorGraphQL.IGetAllPositions_Positions_Nodes_Children?>();
+            foreach (global::VectorGraphQL.State.PositionData? child in list)
+            {
+                positions.Add(MapIGetAllPositions_Positions_Nodes_Children(child, snapshot));
+            }
+
+            return positions;
+        }
+
+        private global::VectorGraphQL.IGetAllPositions_Positions_Nodes_Children? MapIGetAllPositions_Positions_Nodes_Children(global::VectorGraphQL.State.PositionData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetAllPositions_Positions_Nodes_Children returnValue = default !;
+            if (data?.__typename.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new GetAllPositions_Positions_Nodes_Children_Position(data.Name);
             }
             else
             {
@@ -11055,7 +11195,7 @@ namespace VectorGraphQL.State
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
             {
-                return new global::VectorGraphQL.State.PositionData(typename, positionId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "positionId")), name: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")), code: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "code")));
+                return new global::VectorGraphQL.State.PositionData(typename, positionId: DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "positionId")), name: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")), code: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "code")), children: DeserializeIGetAllPositions_Positions_Nodes_ChildrenArray(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "children")));
             }
 
             throw new global::System.NotSupportedException();
@@ -11079,6 +11219,38 @@ namespace VectorGraphQL.State
             }
 
             return _stringParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.PositionData?>? DeserializeIGetAllPositions_Positions_Nodes_ChildrenArray(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var positions = new global::System.Collections.Generic.List<global::VectorGraphQL.State.PositionData?>();
+            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
+            {
+                positions.Add(DeserializeIGetAllPositions_Positions_Nodes_Children(child));
+            }
+
+            return positions;
+        }
+
+        private global::VectorGraphQL.State.PositionData? DeserializeIGetAllPositions_Positions_Nodes_Children(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("Position", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::VectorGraphQL.State.PositionData(typename, name: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
+            }
+
+            throw new global::System.NotSupportedException();
         }
 
         private global::VectorGraphQL.State.PageInfoData? DeserializeIGetAllPositions_Positions_PageInfo(global::System.Text.Json.JsonElement? obj)
@@ -11460,12 +11632,13 @@ namespace VectorGraphQL.State
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
     public partial class PositionData
     {
-        public PositionData(global::System.String __typename, global::System.String? positionId = default !, global::System.String? name = default !, global::System.String? code = default !)
+        public PositionData(global::System.String __typename, global::System.String? positionId = default !, global::System.String? name = default !, global::System.String? code = default !, global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.PositionData?>? children = default !)
         {
             this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
             PositionId = positionId;
             Name = name;
             Code = code;
+            Children = children;
         }
 
         public global::System.String __typename { get; }
@@ -11475,6 +11648,8 @@ namespace VectorGraphQL.State
         public global::System.String? Name { get; }
 
         public global::System.String? Code { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::VectorGraphQL.State.PositionData?>? Children { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.13.2.0")]
